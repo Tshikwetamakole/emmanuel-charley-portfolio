@@ -10,6 +10,7 @@
     "type": "module"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "framer-motion": "^12.19.1",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.523.0",
