@@ -10,39 +10,38 @@ import Blog from "./pages/Blog";
 import Post from "./pages/Post";
 import Contact from "./pages/Contact";
 
+const HomePage = () => (
+  <main className="bg-background text-foreground scroll-smooth">
+    <section id="home">
+      <Hero />
+    </section>
+    <section id="about">
+      <About />
+    </section>
+    <section id="services">
+      <Services />
+    </section>
+    <section id="skills">
+      <Skills />
+    </section>
+    <section id="projects">
+      <Projects />
+    </section>
+    <section id="blog">
+      <Blog />
+    </section>
+    <section id="contact">
+      <Contact />
+    </section>
+  </main>
+);
+
 const App = () => {
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <main className="bg-background text-foreground scroll-smooth">
-              <section id="Home">
-                <Hero />
-              </section>
-              <section id="about">
-                <About />
-              </section>
-              <section id="services">
-                <Services />
-              </section>
-              <section id="skills">
-                <Skills />
-              </section>
-              <section id="projects">
-                <Projects />
-              </section>
-              <section id="blog">
-                <Blog />
-              </section>
-              <section id="contact">
-                <Contact />
-              </section>
-            </main>
-          }
-        />
+        <Route path="/" element={<HomePage />} />
         <Route path="/posts/:slug" element={<Post />} />
       </Routes>
     </Router>
