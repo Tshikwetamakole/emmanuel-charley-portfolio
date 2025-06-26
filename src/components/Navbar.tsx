@@ -35,8 +35,9 @@ const Navbar = () => {
           }
         }}
       >
-        Charley
+        Emmanuel Charley
       </motion.div>
+
 
       {/* Desktop Menu */}
       <ul className="hidden space-x-6 text-sm font-medium md:flex" role="menubar">
@@ -64,9 +65,10 @@ const Navbar = () => {
         className="md:hidden focus:outline-none text-foreground"
         onClick={toggleMenu}
         aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-        aria-expanded={isOpen ? "true" : "false"}
+        aria-expanded={isOpen}
         aria-controls="mobile-menu"
       >
+
 
         <svg
           className="w-6 h-6"
