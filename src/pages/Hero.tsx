@@ -6,7 +6,7 @@ const Hero = () => {
     <motion.section
       className="relative flex flex-col items-center justify-center px-4 py-20 text-center text-foreground"
       style={{
-        backgroundImage: `url('/src/assets/hero-background.jpg')`,
+        backgroundImage: `url('./src/assets/hero-background.jpg')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -17,7 +17,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-black bg-opacity-60"></div>
       <div className="relative z-10 max-w-xl">
         <img
-          src="/profile.jpg"
+          src="./profile.jpg"
           alt="Charley Raluswinga"
           className="object-cover w-40 h-40 mx-auto mb-6 rounded-full shadow-lg"
           loading="lazy"
