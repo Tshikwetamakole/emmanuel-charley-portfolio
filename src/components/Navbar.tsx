@@ -38,9 +38,11 @@ const Navbar = () => {
         Emmanuel Charley
       </motion.div>
 
-
       {/* Desktop Menu */}
-      <ul className="hidden space-x-6 text-sm font-medium md:flex" role="menubar">
+      <ul
+        className="hidden space-x-6 text-sm font-medium md:flex"
+        role="menubar"
+      >
         {navLinks.map((link) => (
           <motion.li
             key={link.href}
@@ -68,8 +70,6 @@ const Navbar = () => {
         aria-expanded={isOpen}
         aria-controls="mobile-menu"
       >
-
-
         <svg
           className="w-6 h-6"
           fill="none"

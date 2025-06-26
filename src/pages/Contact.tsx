@@ -68,7 +68,24 @@ const Contact = () => {
         >
           📱 WhatsApp Me
         </a>
+        <a
+          href="https://facebook.com/charley.e.raluswinga"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block font-medium transition-colors duration-200 text-accent hover:text-secondaryAccent hover:underline"
+        >
+          📘 Facebook
+        </a>
+        <a
+          href="https://github.com/Tshikwetamakole"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block font-medium transition-colors duration-200 text-accent hover:text-secondaryAccent hover:underline"
+        >
+          🐙 GitHub
+        </a>
       </div>
+
     </section>
   );
 };
