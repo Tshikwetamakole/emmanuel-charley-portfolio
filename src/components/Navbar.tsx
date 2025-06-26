@@ -9,12 +9,12 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#services", label: "Services" },
-    { href: "#projects", label: "Projects" },
-    { href: "#blog", label: "Blog" },
-    { href: "#contact", label: "Contact" },
+    { href: "Home", label: "Home" },
+    { href: "About", label: "About" },
+    { href: "Services", label: "Services" },
+    { href: "Projects", label: "Projects" },
+    { href: "Blog", label: "Blog" },
+    { href: "Contact", label: "Contact" },
   ];
 
   return (
@@ -31,7 +31,7 @@ const Navbar = () => {
         aria-label="Homepage"
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
-            window.location.href = "#home";
+            window.location.href = "Home";
           }
         }}
       >

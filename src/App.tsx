@@ -19,7 +19,7 @@ const App = () => {
           path="/"
           element={
             <main className="bg-background text-foreground scroll-smooth">
-              <section id="home">
+              <section id="Home">
                 <Hero />
               </section>
               <section id="about">
