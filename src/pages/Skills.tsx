@@ -28,6 +28,14 @@ const skillCategories = [
       { icon: <FaPaintBrush size={40} />, name: "UI/UX Design" },
     ],
   },
+  {
+    title: "Cloud & API Solutions",
+    skills: [
+      { icon: <FaServer size={40} />, name: "AWS Cloud" },
+      { icon: <SiSharp size={40} />, name: "RESTful APIs" },
+      { icon: <SiFirebase size={40} />, name: "GraphQL" },
+    ],
+  },
 ];
 
 const Skills = () => {
@@ -42,7 +50,7 @@ const Skills = () => {
       >
         Technical Skills
       </motion.h2>
-      <div className="max-w-6xl mx-auto space-y-12">
+      <div className="grid max-w-6xl grid-cols-1 gap-6 mx-auto space-y-12 md:grid-cols-2">
         {skillCategories.map((category, categoryIndex) => (
           <motion.div 
             key={category.title}

@@ -17,9 +17,12 @@ const Blog = () => {
     const placeholderPosts = [
       { title: "AI in African Schools", date: "2023-10-15", slug: "ai-in-african-schools" },
       { title: "Tech Trends in South Africa", date: "2023-09-20", slug: "tech-trends-south-africa" },
+      { title: "Digital Transformation in African Businesses", date: "2024-01-10", slug: "digital-transformation-african-businesses" },
+      { title: "Cloud Solutions for African Connectivity", date: "2024-02-05", slug: "cloud-solutions-african-connectivity" },
     ];
     setPosts(placeholderPosts);
   }, []);
+
 
 
   return (

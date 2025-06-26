@@ -1,9 +1,27 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const Contact = () => {
   return (
     <section id="contact" className="px-6 py-20 text-center bg-background text-foreground">
-      <h2 className="mb-8 text-3xl font-bold tracking-wider">Let's Connect</h2>
+      <motion.h2 
+        className="mb-8 text-3xl font-bold tracking-wider"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+      >
+        Let's Connect
+      </motion.h2>
+      <motion.p 
+        className="max-w-2xl mx-auto mb-8 text-lg text-foreground/80"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        viewport={{ once: true }}
+      >
+        I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out through any of the platforms below.
+      </motion.p>
       <form
         className="max-w-xl mx-auto space-y-4"
         onSubmit={(e) => {
@@ -29,12 +47,15 @@ const Contact = () => {
           rows={5}
           required
         />
-        <button
+        <motion.button
           type="submit"
-          className="px-6 py-2 transition-transform rounded text-foreground bg-accent hover:scale-105 hover:shadow-lg hover:bg-accent/90"
+          className="px-6 py-2 transition-transform rounded text-foreground bg-accent hover:shadow-lg hover:bg-accent/90"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ type: "spring", stiffness: 300 }}
         >
           Send Message
-        </button>
+        </motion.button>
       </form>
 
       <div className="mt-8 space-y-2">
@@ -49,7 +70,6 @@ const Contact = () => {
         </a>
       </div>
     </section>
-
   );
 };
 

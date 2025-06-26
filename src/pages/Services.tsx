@@ -5,31 +5,44 @@ import { motion } from "framer-motion";
 const services = [
   {
     icon: <Code size={32} className="text-secondaryAccent" />,
-
-    title: "Full-Stack Development",
+    title: "Custom Software Development",
     description:
-      "I build responsive web and mobile applications using modern front-end and back-end technologies including React, .NET MAUI, and Firebase.",
+      "Bespoke applications that address specific business challenges with user-centered design, scalable architecture, and comprehensive support.",
   },
   {
     icon: <Paintbrush size={32} className="text-secondaryAccent" />,
-
-    title: "UI/UX Design",
+    title: "Cloud Solutions",
     description:
-      "From wireframes to polished interfaces, I design user experiences that are both beautiful and functional across all devices.",
+      "Transform your infrastructure with comprehensive cloud migration, optimization, and application development services engineered for African connectivity realities.",
   },
   {
     icon: <Lightbulb size={32} className="text-secondaryAccent" />,
-
-    title: "Digital Strategy",
+    title: "Digital Transformation",
     description:
-      "I help organizations craft and execute digital transformation strategies that align with business goals and engage their audiences.",
+      "Strategic guidance from current state assessment to future vision with phased implementation planning and ROI analysis tailored to your organization.",
+  },
+  {
+    icon: <Code size={32} className="text-secondaryAccent" />,
+    title: "API Development & Integration",
+    description:
+      "Connect disparate systems through RESTful and GraphQL APIs, creating cohesive technology ecosystems that enhance organizational data flow.",
+  },
+  {
+    icon: <Paintbrush size={32} className="text-secondaryAccent" />,
+    title: "Graphic Design",
+    description:
+      "Creative visual solutions that communicate your brand's message effectively through logos, branding materials, and digital assets.",
   },
 ];
 
+
 const Services = () => {
   return (
-    <section id="services" className="px-6 py-20 text-center bg-background text-foreground">
-      <motion.h2 
+    <section
+      id="services"
+      className="px-6 py-20 text-center bg-background text-foreground"
+    >
+      <motion.h2
         className="mb-10 text-3xl font-bold tracking-wider"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -50,9 +63,10 @@ const Services = () => {
             className="p-6 transition border shadow-lg rounded-xl border-borderLine bg-background/90 hover:shadow-xl"
           >
             {service.icon}
-            <h3 className="mb-2 text-xl font-semibold text-foreground">{service.title}</h3>
+            <h3 className="mb-2 text-xl font-semibold text-foreground">
+              {service.title}
+            </h3>
             <p className="text-sm text-foreground/80">{service.description}</p>
-
           </motion.div>
         ))}
       </div>
