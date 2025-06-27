@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
@@ -8,13 +8,21 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+  const scrollToSection = (href: string) => {
+    const sectionId = href.substring(1);
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const navLinks = [
-    { href: "Home", label: "Home" },
-    { href: "About", label: "About" },
-    { href: "Services", label: "Services" },
-    { href: "Projects", label: "Projects" },
-    { href: "Blog", label: "Blog" },
-    { href: "Contact", label: "Contact" },
+    { href: "#home", label: "Home" },
+    { href: "#about", label: "About" },
+    { href: "#services", label: "Services" },
+    { href: "#projects", label: "Projects" },
+    { href: "#blog", label: "Blog" },
+    { href: "#contact", label: "Contact" },
   ];
 
   return (
@@ -29,9 +37,10 @@ const Navbar = () => {
         transition={{ type: "spring", stiffness: 300 }}
         tabIndex={0}
         aria-label="Homepage"
+        onClick={() => scrollToSection("#home")}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
-            window.location.href = "Home";
+            scrollToSection("#home");
           }
         }}
       >
@@ -52,9 +61,13 @@ const Navbar = () => {
           >
             <a
               href={link.href}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection(link.href);
+              }}
               className="transition-colors duration-200 rounded focus:outline-none focus:ring-2 focus:ring-accent"
               role="menuitem"
-              tabIndex={-1}
+              tabIndex={0}
             >
               {link.label}
             </a>
@@ -68,7 +81,7 @@ const Navbar = () => {
         className="md:hidden focus:outline-none text-foreground"
         onClick={toggleMenu}
         aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-        aria-expanded={isOpen ? true : false}
+        aria-expanded={isOpen ? "true" : "false"}
         aria-controls="mobile-menu"
       >
         <svg
@@ -80,10 +93,10 @@ const Navbar = () => {
           aria-hidden="true"
         >
           <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
           />
         </svg>
       </button>
@@ -109,7 +122,11 @@ const Navbar = () => {
               <a
                 href={link.href}
                 className="transition-colors duration-200 rounded hover:text-secondaryAccent focus:outline-none focus:ring-2 focus:ring-accent"
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(link.href);
+                  setIsOpen(false);
+                }}
                 role="menuitem"
                 tabIndex={isOpen ? 0 : -1}
               >
