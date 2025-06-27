@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 const Navbar = () => {
@@ -64,10 +64,11 @@ const Navbar = () => {
 
       {/* Mobile Menu Button */}
       <button
+        type="button"
         className="md:hidden focus:outline-none text-foreground"
         onClick={toggleMenu}
         aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-        aria-expanded={isOpen}
+        aria-expanded={isOpen ? true : false}
         aria-controls="mobile-menu"
       >
         <svg
@@ -79,10 +80,10 @@ const Navbar = () => {
           aria-hidden="true"
         >
           <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
           />
         </svg>
       </button>
