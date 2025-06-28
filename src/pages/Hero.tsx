@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import heroBackground from "../assets/hero-background.jpg"; // Ensure this path is correct
+import heroBackground from "../assets/hero-background.jpg"; // Ensure this is correct
 
 const Hero = () => {
   return (
@@ -36,25 +36,30 @@ const Hero = () => {
           I build scalable, user-focused digital experiences with heart and
           precision for African markets and beyond.
         </p>
+
         <div className="mt-6 space-x-4">
-          <motion.button
+          <motion.a
+            href={`${import.meta.env.BASE_URL}resume.pdf`}
+            download
             className="px-6 py-2 transition-transform rounded-lg text-foreground bg-accent hover:shadow-lg hover:bg-accent/90"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300 }}
-            onClick={() => (window.location.href = "#projects")}
           >
             Portfolio
-          </motion.button>
-          <motion.button
+          </motion.a>
+
+          <motion.a
+            href="https://wa.me/27635273250"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-6 py-2 transition-transform border rounded-lg text-foreground border-borderLine hover:bg-secondaryAccent hover:border-secondaryAccent hover:shadow-lg"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300 }}
-            onClick={() => (window.location.href = "#contact")}
           >
             Hire Me
-          </motion.button>
+          </motion.a>
         </div>
       </div>
     </motion.section>
