@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 
@@ -8,16 +8,12 @@ const Contact = () => {
     email: "",
     message: "",
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: "success" | "error" | null;
     message: string;
   }>({ type: null, message: "" });
-
-  // Initialize EmailJS
-  useEffect(() => {
-    emailjs.init("TY8ppfdcp2uPpcD23");
-  }, []);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -35,7 +31,6 @@ const Contact = () => {
     setSubmitStatus({ type: null, message: "" });
 
     try {
-      // EmailJS credentials
       const serviceId = "service_pvidbt8";
       const templateId = "template_tf4osku";
       const publicKey = "TY8ppfdcp2uPpcD23";
@@ -55,6 +50,7 @@ const Contact = () => {
       });
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
+      console.error("EmailJS Error:", error);
       setSubmitStatus({
         type: "error",
         message:
@@ -76,10 +72,8 @@ const Contact = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Dark overlay for better text readability */}
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
 
-      {/* Content wrapper with relative positioning */}
       <div className="relative z-10">
         <motion.h2
           className="mb-8 text-3xl font-bold tracking-wider"
@@ -165,7 +159,6 @@ const Contact = () => {
         </form>
       </div>
 
-      {/* Contact info section with glass morphism effect */}
       <div className="relative z-10 max-w-md p-6 mx-auto mt-8 space-y-2 border rounded-lg bg-white/10 backdrop-blur-md border-white/20">
         <p>📧 victorraluswinga@gmail.com</p>
         <a
