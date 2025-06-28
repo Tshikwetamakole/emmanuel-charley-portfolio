@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
-import heroBackground from "../assets/hero-background.jpg"; // Adjust if needed
+import heroBackground from "../assets/hero-background.jpg";
 
 const Hero = () => {
   const handleDownload = () => {
@@ -18,7 +18,7 @@ const Hero = () => {
 
   return (
     <motion.section
-      className="relative flex flex-col items-center justify-center px-4 py-20 text-center text-foreground dark:text-white"
+      className="relative flex items-center justify-center min-h-screen px-4 text-center text-foreground dark:text-white overflow-hidden"
       style={{
         backgroundImage: `url(${heroBackground})`,
         backgroundSize: "cover",
@@ -28,46 +28,51 @@ const Hero = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-60 dark:bg-opacity-70"></div>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-0"></div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-xl">
+      {/* Glass container */}
+      <motion.div
+        className="relative z-10 max-w-2xl w-full bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/20 rounded-xl p-8 shadow-2xl"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
         <img
           src={`${import.meta.env.BASE_URL}profile.jpg`}
           alt="Charley Raluswinga"
-          className="object-cover w-40 h-40 mx-auto mb-6 rounded-full shadow-lg"
-          loading="lazy"
-          decoding="async"
+          className="w-32 h-32 mx-auto mb-6 rounded-full object-cover border-4 border-accent shadow-lg"
         />
-        <h1 className="text-4xl font-bold tracking-wider">
+        <h1 className="text-3xl font-bold tracking-wide">
           Emmanuel 'Charley' Raluswinga
           <br />
-          <span className="block text-secondaryAccent mt-2 text-xl">
+          <span className="block mt-2 text-xl font-medium bg-gradient-to-r from-accent to-secondaryAccent bg-clip-text text-transparent">
             <Typewriter
               words={[
                 "Full-Stack Developer",
-                "Graphic Designer",
-                "Digital Strategist",
+                "UI/UX Designer",
+                "Creative Strategist",
               ]}
               loop
               cursor
-              cursorStyle="_"
-              typeSpeed={70}
-              deleteSpeed={50}
+              cursorStyle="|"
+              typeSpeed={60}
+              deleteSpeed={40}
               delaySpeed={1500}
             />
           </span>
         </h1>
         <p className="mt-4 text-lg text-foreground/80 dark:text-white/70">
-          I build scalable, user-focused digital experiences with heart and
-          precision for African markets and beyond.
+          I create sleek, scalable, and human-centered digital experiences that
+          connect brands and people — across Africa and beyond.
         </p>
 
-        <div className="mt-6 space-x-4">
+        {/* Buttons */}
+        <div className="mt-6 flex justify-center gap-4 flex-wrap">
           <motion.button
             onClick={handleDownload}
-            className="px-6 py-2 transition-transform rounded-lg text-foreground bg-accent hover:shadow-lg hover:bg-accent/90"
+            className="px-6 py-2 rounded-lg bg-accent text-foreground shadow-md hover:shadow-xl hover:bg-accent/90 transition-all"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -79,10 +84,17 @@ const Hero = () => {
             href="https://wa.me/27635273250"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-2 transition-transform border rounded-lg text-foreground border-borderLine hover:bg-secondaryAccent hover:border-secondaryAccent hover:shadow-lg"
+            className="px-6 py-2 border border-borderLine rounded-lg text-foreground hover:bg-secondaryAccent hover:border-secondaryAccent hover:shadow-lg transition-all"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            H
-            
+            Hire Me
+          </motion.a>
+        </div>
+      </motion.div>
+    </motion.section>
+  );
+};
+
+export default Hero;
