@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import heroBackground from "../assets/hero-background.jpg"; // Adjust path if needed
+import heroBackground from "../assets/hero-background.jpg"; // Ensure this path is correct
 
 const Hero = () => {
   return (
@@ -21,7 +21,7 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 max-w-xl">
         <img
-          src="/profile.jpg"
+          src={`${import.meta.env.BASE_URL}profile.jpg`}
           alt="Charley Raluswinga"
           className="object-cover w-40 h-40 mx-auto mb-6 rounded-full shadow-lg"
           loading="lazy"
