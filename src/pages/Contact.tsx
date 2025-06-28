@@ -54,7 +54,7 @@ const Contact = () => {
       setSubmitStatus({
         type: "error",
         message:
-          "❌ Failed to send message. Please try again or contact me directly.",
+          "❌ Failed to send message. Please try again or WhatsApp me, link below.",
       });
     } finally {
       setIsSubmitting(false);
