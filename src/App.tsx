@@ -9,6 +9,16 @@ import Projects from "./pages/Projects";
 import Blog from "./pages/Blog";
 import Post from "./pages/Post";
 import Contact from "./pages/Contact";
+import ThemeToggle from "./components/ThemeToggle";
+
+function App() {
+  return (
+    <>
+      <ThemeToggle />
+      {/* other components */}
+    </>
+  );
+}
 
 const HomePage = () => (
   <main className="bg-background text-foreground scroll-smooth">
