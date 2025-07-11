@@ -7,6 +7,7 @@ import Skills from "./pages/Skills";
 import Projects from "./pages/Projects";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <section id="projects"><Projects /></section>
         <section id="blog"><Blog /></section>
         <section id="contact"><Contact /></section>
+        <FloatingWhatsApp />
       </main>
     </div>
   );
