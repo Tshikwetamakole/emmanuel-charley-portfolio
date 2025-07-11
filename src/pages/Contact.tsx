@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import styles from "./Contact.module.css"; // optional if you're using custom CSS
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -31,9 +32,9 @@ const Contact = () => {
     setSubmitStatus({ type: null, message: "" });
 
     try {
-      const serviceId = "service_pvidbt8";
-      const templateId = "template_tf4osku";
-      const publicKey = "TY8ppfdcp2uPpcD23";
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID!;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID!;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY!;
 
       const templateParams = {
         from_name: formData.name,
@@ -64,13 +65,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative px-6 py-20 overflow-hidden text-center text-foreground"
-      style={{
-        backgroundImage: `url('/charley3.jpg')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
+      className="relative px-6 py-20 overflow-hidden text-center text-foreground contact-section-bg"
     >
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
 
