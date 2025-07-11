@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import styles from "./Contact.module.css";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
