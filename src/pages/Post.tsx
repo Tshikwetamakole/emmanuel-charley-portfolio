@@ -10,7 +10,11 @@ const Post = () => {
 
   useEffect(() => {
     const loadPost = async () => {
-      const posts = import.meta.glob('../posts/*.md');
+      const posts = import.meta.glob('../posts/*.md', {
+        query: '?raw',
+        import: 'default',
+      });
+
       const path = `../posts/${slug}.md`;
 
       if (!(path in posts)) {
@@ -18,10 +22,8 @@ const Post = () => {
         return;
       }
 
-      const file = await posts[path]();
-      const fileModule = file as { default: string };
-      const raw = await fetch(fileModule.default).then(res => res.text());
-      const { content, data } = matter(raw);
+      const raw = await posts[path]();
+      const { content, data } = matter(raw as string);
 
       setContent(content);
       setMeta({
@@ -34,18 +36,16 @@ const Post = () => {
   }, [slug]);
 
   return (
-    <section className="min-h-screen px-4 py-20 sm:px-6 lg:px-8 text-foreground">
-      <article className="max-w-3xl mx-auto leading-relaxed prose prose-base md:prose-lg dark:prose-invert">
-        {meta ? (
-          <>
-            <h1 className="mb-2">{meta.title}</h1>
-            <p className="mb-6 text-sm text-secondaryAccent">{meta.date}</p>
-            <ReactMarkdown>{content}</ReactMarkdown>
-          </>
-        ) : (
-          <p className="text-lg text-center">Loading...</p>
-        )}
-      </article>
+    <section className="max-w-3xl px-4 py-20 mx-auto prose dark:prose-invert text-foreground">
+      {meta ? (
+        <>
+          <h1>{meta.title}</h1>
+          <p className="mb-6 text-sm text-secondaryAccent">{meta.date}</p>
+          <ReactMarkdown>{content}</ReactMarkdown>
+        </>
+      ) : (
+        <p className="text-xl text-center">Loading...</p>
+      )}
     </section>
   );
 };
