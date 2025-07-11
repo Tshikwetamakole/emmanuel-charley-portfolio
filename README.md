@@ -6,8 +6,7 @@ A sleek, animated, and modern developer portfolio built with React, TypeScript, 
 
 👉 **Live Site:** [https://tshikwetamakole.github.io/emmanuel-charley-portfolio](https://tshikwetamakole.github.io/emmanuel-charley-portfolio)
 
-![Portfolio Preview](https://raw.githubusercontent.com/Tshikwetamakole/emmanuel-charley-portfolio/main/src/assets/charley3.jpg)
-
+![Portfolio Preview](https://raw.githubusercontent.com/Tshikwetamakole/emmanuel-charley-portfolio/main/src/assets/portfolio-preview.png)
 
 ---
 
@@ -34,7 +33,6 @@ src/
 ├── App.tsx # Main app layout
 ├── main.tsx # React entry point
 ├── index.css # Tailwind styles
-
 
 ---
 
