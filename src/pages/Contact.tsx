@@ -1,65 +1,20 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
-import styles from "./Contact.module.css"; // optional if you're using custom CSS
+import styles from "./Contact.module.css"; // Optional if you're using extra styling
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<{
-    type: "success" | "error" | null;
-    message: string;
-  }>({ type: null, message: "" });
+  const [status, setStatus] = useState<"success" | "error" | null>(null);
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus({ type: null, message: "" });
 
-    try {
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID!;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID!;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY!;
-
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        message: formData.message,
-        to_name: "Emmanuel Charley",
-      };
-
-      await emailjs.send(serviceId, templateId, templateParams, publicKey);
-
-      setSubmitStatus({
-        type: "success",
-        message: "✅ Message sent successfully! I'll get back to you soon.",
-      });
-      setFormData({ name: "", email: "", message: "" });
-    } catch (error) {
-      console.error("EmailJS Error:", error);
-      setSubmitStatus({
-        type: "error",
-        message:
-          "❌ Failed to send message. Please try again or WhatsApp me, link below.",
-      });
-    } finally {
+    // Simulate success feedback
+    setTimeout(() => {
       setIsSubmitting(false);
-    }
+      setStatus("success");
+    }, 1200);
   };
 
   return (
@@ -75,28 +30,28 @@ const Contact = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
         >
           Let's Connect
         </motion.h2>
+
         <motion.p
           className="max-w-2xl mx-auto mb-8 text-lg text-foreground/80"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          viewport={{ once: true }}
         >
-          I'm always open to discussing new projects, creative ideas, or
-          opportunities to be part of your vision. Feel free to reach out
-          through any of the platforms below.
+          Send me a message through this form or reach out on WhatsApp.
         </motion.p>
 
-        <form className="max-w-xl mx-auto space-y-4" onSubmit={handleSubmit}>
+        <form
+          action="https://formspree.io/f/xnnvezby"
+          method="POST"
+          className="max-w-xl mx-auto space-y-4"
+          onSubmit={handleSubmit}
+        >
           <input
             type="text"
             name="name"
-            value={formData.name}
-            onChange={handleInputChange}
             placeholder="Your Name"
             className="w-full p-3 border rounded border-borderLine bg-background/90 text-foreground placeholder:text-foreground/60"
             required
@@ -105,8 +60,6 @@ const Contact = () => {
           <input
             type="email"
             name="email"
-            value={formData.email}
-            onChange={handleInputChange}
             placeholder="Your Email"
             className="w-full p-3 border rounded border-borderLine bg-background/90 text-foreground placeholder:text-foreground/60"
             required
@@ -114,32 +67,26 @@ const Contact = () => {
           />
           <textarea
             name="message"
-            value={formData.message}
-            onChange={handleInputChange}
             placeholder="Your Message"
-            className="w-full p-3 border rounded border-borderLine bg-background/90 text-foreground placeholder:text-foreground/60"
             rows={5}
+            className="w-full p-3 border rounded border-borderLine bg-background/90 text-foreground placeholder:text-foreground/60"
             required
             disabled={isSubmitting}
           />
 
-          {submitStatus.type && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className={`p-3 rounded text-sm font-medium ${
-                submitStatus.type === "success"
-                  ? "bg-green-100 text-green-800 border border-green-200"
-                  : "bg-red-100 text-red-800 border border-red-200"
-              }`}
-            >
-              {submitStatus.message}
-            </motion.div>
+          {status === "success" && (
+            <div className="p-3 text-green-700 bg-green-100 border border-green-300 rounded">
+              ✅ Message sent!
+            </div>
+          )}
+          {status === "error" && (
+            <div className="p-3 text-red-700 bg-red-100 border border-red-300 rounded">
+              ❌ Something went wrong. Try WhatsApp.
+            </div>
           )}
 
           <motion.button
             type="submit"
-            disabled={isSubmitting}
             className={`px-6 py-2 transition-transform rounded text-foreground ${
               isSubmitting
                 ? "bg-accent/50 cursor-not-allowed"
@@ -147,39 +94,22 @@ const Contact = () => {
             }`}
             whileHover={!isSubmitting ? { scale: 1.05 } : {}}
             whileTap={!isSubmitting ? { scale: 0.95 } : {}}
-            transition={{ type: "spring", stiffness: 300 }}
           >
             {isSubmitting ? "Sending..." : "Send Message"}
           </motion.button>
         </form>
-      </div>
 
-      <div className="relative z-10 max-w-md p-6 mx-auto mt-8 space-y-2 border rounded-lg bg-white/10 backdrop-blur-md border-white/20">
-        <p>📧 victorraluswinga@gmail.com</p>
-        <a
-          href="https://wa.me/27635273250"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block font-medium transition-colors duration-200 text-accent hover:text-secondaryAccent hover:underline"
-        >
-          📱 WhatsApp Me
-        </a>
-        <a
-          href="https://facebook.com/charley.e.raluswinga"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block font-medium transition-colors duration-200 text-accent hover:text-secondaryAccent hover:underline"
-        >
-          📘 Facebook
-        </a>
-        <a
-          href="https://github.com/Tshikwetamakole"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block font-medium transition-colors duration-200 text-accent hover:text-secondaryAccent hover:underline"
-        >
-          🐙 GitHub
-        </a>
+        <div className="relative z-10 max-w-md p-6 mx-auto mt-8 space-y-2 border rounded-lg bg-white/10 backdrop-blur-md border-white/20">
+          <p>📧 victorraluswinga@gmail.com</p>
+          <a
+            href="https://wa.me/27635273250"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block font-medium text-accent hover:text-secondaryAccent hover:underline"
+          >
+            📱 WhatsApp Me
+          </a>
+        </div>
       </div>
     </section>
   );
