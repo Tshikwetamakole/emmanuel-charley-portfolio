@@ -1,15 +1,8 @@
 ---
 title: "Introducing AI in African Schools"
 date: "2024-02-16"
-excerpt: "Is AI the future of African education — or a risky bet?"
 ---
 
-AI is spreading fast across every industry, but should it be in classrooms yet?
+AI is coming to Africa’s classrooms — but is it truly ready?
 
-## The Opportunity
-
-AI offers better access to personalized learning, adaptive assessments...
-
-## The Risk
-
-It could widen the digital divide if not rolled out equitably...
+In this article, we explore the potential of machine learning in improving education and how policymakers, parents, and learners can prepare...
