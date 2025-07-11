@@ -6,16 +6,27 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<"success" | "error" | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  const form = e.currentTarget;
+  const honeypot = form.querySelector('input[name="_gotcha"]') as HTMLInputElement;
 
-    // Simulate success feedback
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setStatus("success");
-    }, 1200);
-  };
+  // If honeypot field is filled, block submission
+  if (honeypot?.value) {
+    setStatus("error");
+    return;
+  }
+
+  setIsSubmitting(true);
+
+  // Simulate success feedback
+  setTimeout(() => {
+    setIsSubmitting(false);
+    setStatus("success");
+    form.reset(); // Optional: clear form
+  }, 1200);
+};
+
 
   return (
     <section
@@ -84,7 +95,15 @@ const Contact = () => {
               ❌ Something went wrong. Try WhatsApp.
             </div>
           )}
-
+          
+          <input
+  type="text"
+  name="_gotcha"
+  className="hidden"
+  tabIndex={-1}
+  title="Leave this field empty"
+  aria-hidden="true"
+/>
           <motion.button
             type="submit"
             className={`px-6 py-2 transition-transform rounded text-foreground ${
