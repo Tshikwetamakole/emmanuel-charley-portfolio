@@ -2,6 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import heroBackground from "../assets/hero-background.jpg";
+import animationData from "../assets/animations/wired-arrow.json";
+import LottieIcon from "../components/LottieIcon";
 
 const Hero = () => {
   const handleDownload = () => {
