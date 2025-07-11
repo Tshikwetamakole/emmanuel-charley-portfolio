@@ -1,0 +1,29 @@
+✅ 1. Add Files Section
+Use this to upload:
+
+README.md — Your project overview.
+
+vite.config.ts — For glob imports.
+
+package.json — To track dependencies and scripts.
+
+src/pages/*.tsx — Core section files like Hero.tsx, Contact.tsx, etc.
+
+/posts/*.md — Your blog article Markdown files.
+
+public/resume.pdf — Your downloadable CV.
+
+Optional: You can include screenshots (like UI designs or issues), and .env (sanitized) for context.
+
+✅ 2. Instructions / Declaration
+I’ll update and maintain this as your working build documentation. You should declare:
+
+Your site purpose: e.g., “To showcase my full-stack development portfolio using React + Tailwind + Markdown blog.”
+
+Your deployment link: GitHub Pages, Netlify, etc.
+
+Any key tools or services used: EmailJS, Formspree, Webhook.site, etc.
+
+Blog configuration: Markdown loader, slug routing, etc.
+
+Would you like me to generate a fresh README or README.md structure to reflect this as well?
