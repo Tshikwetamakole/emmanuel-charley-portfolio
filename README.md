@@ -1,10 +1,13 @@
 # Emmanuel Charley Portfolio
+
 ![Deploy to GitHub Pages](https://github.com/Tshikwetamakole/emmanuel-charley-portfolio/actions/workflows/deploy.yml/badge.svg)
 
-
-Welcome to the source code of my personal developer portfolio — a sleek, responsive, and animated single-page application built with **React**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**.
+A sleek, animated, and modern developer portfolio built with React, TypeScript, Tailwind CSS, and Framer Motion.
 
 👉 **Live Site:** [https://tshikwetamakole.github.io/emmanuel-charley-portfolio](https://tshikwetamakole.github.io/emmanuel-charley-portfolio)
+
+![Portfolio Preview](https://raw.githubusercontent.com/Tshikwetamakole/emmanuel-charley-portfolio/main/src/assets/charley3.jpg)
+
 
 ---
 
