@@ -40,9 +40,9 @@ const skillCategories = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="px-6 py-20 bg-background text-foreground">
+    <section id="skills" className="px-4 py-20 sm:px-6 bg-background text-foreground">
       <motion.h2 
-        className="mb-12 text-3xl font-bold tracking-wider text-center"
+        className="mb-12 text-3xl font-bold tracking-wider text-center sm:text-4xl text-accent"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -50,31 +50,34 @@ const Skills = () => {
       >
         Technical Skills
       </motion.h2>
-      <div className="grid max-w-6xl grid-cols-1 gap-6 mx-auto space-y-12 md:grid-cols-2">
+
+      <div className="grid max-w-6xl grid-cols-1 gap-8 mx-auto md:grid-cols-2 lg:grid-cols-4">
         {skillCategories.map((category, categoryIndex) => (
           <motion.div 
             key={category.title}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: categoryIndex * 0.2 }}
+            transition={{ duration: 0.5, delay: categoryIndex * 0.15 }}
             viewport={{ once: true }}
             className="p-6 border rounded-xl border-borderLine bg-background/90"
           >
-            <h3 className="mb-6 text-xl font-semibold text-secondaryAccent">{category.title}</h3>
-            <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+            <h3 className="mb-6 text-lg font-semibold text-center text-secondaryAccent md:text-left">
+              {category.title}
+            </h3>
+            <div className="grid grid-cols-3 gap-y-6 place-items-center sm:grid-cols-3">
               {category.skills.map((skill, skillIndex) => (
                 <motion.div 
                   key={skill.name}
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: skillIndex * 0.1 }}
+                  transition={{ duration: 0.3, delay: skillIndex * 0.05 }}
                   viewport={{ once: true }}
                   className="text-center group"
                 >
-                  <div className="mx-auto transition-colors duration-200 text-foreground/80 group-hover:text-secondaryAccent">
+                  <div className="transition-colors duration-200 text-foreground/80 group-hover:text-secondaryAccent">
                     {skill.icon}
                   </div>
-                  <p className="mt-2 text-sm transition-colors duration-200 text-foreground/80 group-hover:text-foreground">
+                  <p className="mt-2 text-sm text-foreground/80 group-hover:text-foreground">
                     {skill.name}
                   </p>
                 </motion.div>

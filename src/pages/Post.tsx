@@ -4,35 +4,48 @@ import ReactMarkdown from "react-markdown";
 import matter from "gray-matter";
 
 const Post = () => {
-  const { slug } = useParams<{ slug: string }>();
-  const [content, setContent] = useState<string>("");
-  const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
+  const { slug } = useParams();
+  const [content, setContent] = useState("");
+  const [meta, setMeta] = useState<{ title: string; date: string } | null>(null);
 
   useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const file = await import(`../../posts/${slug}.md?raw`);
-        const { content, data } = matter(file.default);
-        setContent(content);
-        setTitle(data.title);
-        setDate(data.date);
-      } catch (error) {
-        setContent("Post not found.");
+    const loadPost = async () => {
+      const posts = import.meta.glob('../posts/*.md');
+      const path = `../posts/${slug}.md`;
+
+      if (!(path in posts)) {
+        setContent("🚫 Post not found.");
+        return;
       }
+
+      const file = await posts[path]();
+      const fileModule = file as { default: string };
+      const raw = await fetch(fileModule.default).then(res => res.text());
+      const { content, data } = matter(raw);
+
+      setContent(content);
+      setMeta({
+        title: typeof data.title === "string" ? data.title : "Untitled",
+        date: typeof data.date === "string" ? data.date : "",
+      });
     };
 
-    fetchPost();
+    loadPost();
   }, [slug]);
 
   return (
-    <section className="max-w-3xl px-6 py-20 mx-auto text-foreground">
-      <h1 className="mb-2 text-3xl font-bold">{title}</h1>
-      <p className="mb-6 text-sm text-highlight">{date}</p>
-     <div className="prose prose-lg prose-slate">
-  <ReactMarkdown>{content}</ReactMarkdown>
-</div>
-
+    <section className="min-h-screen px-4 py-20 sm:px-6 lg:px-8 text-foreground">
+      <article className="max-w-3xl mx-auto leading-relaxed prose prose-base md:prose-lg dark:prose-invert">
+        {meta ? (
+          <>
+            <h1 className="mb-2">{meta.title}</h1>
+            <p className="mb-6 text-sm text-secondaryAccent">{meta.date}</p>
+            <ReactMarkdown>{content}</ReactMarkdown>
+          </>
+        ) : (
+          <p className="text-lg text-center">Loading...</p>
+        )}
+      </article>
     </section>
   );
 };
