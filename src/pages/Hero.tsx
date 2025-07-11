@@ -78,6 +78,9 @@ const Hero = () => {
           I create sleek, scalable, and human-centered digital experiences that
           connect brands and people — across Africa and beyond.
         </p>
+        <div className="flex justify-center mt-6">
+  <LottieIcon animation={animationData} className="w-32 h-32" />
+</div>
 
         {/* Buttons */}
         <div className="flex flex-col flex-wrap items-center justify-center gap-4 mt-6 sm:flex-row">
