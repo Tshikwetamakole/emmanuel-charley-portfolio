@@ -10,6 +10,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "lottie-react": "^2.4.0",
     "@emailjs/browser": "^4.4.1",
     "framer-motion": "^12.19.1",
     "gray-matter": "^4.0.3",
