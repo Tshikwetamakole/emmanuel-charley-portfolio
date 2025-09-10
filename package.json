@@ -6,10 +6,8 @@
 
   "private": true,
 
-  "homepage": ".",          // <-- set homepage to "." or remove this line
-
-  "dependencies": { ... }
-
+  "homepage": ".",      
+  "dependencies": {
 }
 
   "scripts": {
