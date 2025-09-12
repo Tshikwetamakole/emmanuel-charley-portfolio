@@ -6,4 +6,5 @@ export default defineConfig({
   build: {
     chunkSizeWarningLimit: 1000, // optional: suppress chunk warnings
   },
+  base: "./", // ensures relative paths so assets load
 });
