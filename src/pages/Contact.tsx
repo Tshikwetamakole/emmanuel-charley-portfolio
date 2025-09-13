@@ -145,6 +145,9 @@ const Contact = () => {
           </a>
         </div>
       </div>
+      <footer className="relative z-10 pt-10 mt-10 text-sm text-center border-t border-white/10 text-foreground/60">
+        <p>&copy; {new Date().getFullYear()} Emmanuel Charley Raluswinga. All Rights Reserved.</p>
+      </footer>
     </section>
   );
 };
