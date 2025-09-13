@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import matter from "gray-matter";
 
 // No need to extend ImportMeta; Vite provides import.meta.glob globally.
 
@@ -13,14 +14,30 @@ const Blog = () => {
   const [posts, setPosts] = useState<BlogPostMeta[]>([]);
 
   useEffect(() => {
-    // Placeholder data for blog posts until TypeScript configuration for import.meta.glob is resolved
-    const placeholderPosts = [
-      { title: "AI in African Schools", date: "2023-10-15", slug: "ai-in-african-schools" },
-      { title: "Tech Trends in South Africa", date: "2023-09-20", slug: "tech-trends-south-africa" },
-      { title: "Digital Transformation in African Businesses", date: "2024-01-10", slug: "digital-transformation-african-businesses" },
-      { title: "Cloud Solutions for African Connectivity", date: "2024-02-05", slug: "cloud-solutions-african-connectivity" },
-    ];
-    setPosts(placeholderPosts);
+    const fetchPosts = async () => {
+      const modules = import.meta.glob('../posts/*.md', { as: 'raw' });
+
+      const postListPromises = Object.entries(modules).map(async ([path, resolver]) => {
+        const rawContent = await resolver();
+        const { data } = matter(rawContent);
+        const slug = path.split('/').pop()!.replace('.md', '');
+
+        return {
+          title: data.title || 'Untitled Post',
+          date: data.date ? new Date(data.date).toISOString().split('T')[0] : 'No date',
+          slug,
+        };
+      });
+
+      const postList = await Promise.all(postListPromises);
+
+      // Sort posts by date, most recent first
+      postList.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+      setPosts(postList);
+    };
+
+    fetchPosts();
   }, []);
 
 
