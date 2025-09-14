@@ -140,3 +140,11 @@ npm run deploy    # Deploy to GitHub Pages
 ### 📚 Notable Content
 - Featured article: [Introducing AI in African Schools](https://tshikwetamakole.github.io/emmanuel-charley-portfolio/posts/introducing-ai-in-african-schools)
 - Resume: Included in `/public/resume.pdf`, downloadable and viewable
+
+---
+
+## 👨‍💻 Author
+
+-   **Emmanuel Charley Raluswinga**
+    -   GitHub: [@Tshikwetamakole](https://github.com/Tshikwetamakole)
+    -   Email: victorraluswinga@gmail.com
