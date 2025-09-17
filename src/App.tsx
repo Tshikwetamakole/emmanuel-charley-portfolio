@@ -8,6 +8,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Skills from "./pages/Skills";
 import Projects from "./pages/Projects";
+import GitHub from "./pages/GitHub";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import Post from "./pages/Post";
@@ -24,6 +25,7 @@ const HomePage = () => (
       <section id="services"><Services /></section>
       <section id="skills"><Skills /></section>
       <section id="projects"><Projects /></section>
+      <section id="github"><GitHub /></section>
       <section id="blog"><Blog /></section>
       <section id="contact"><Contact /></section>
       <FloatingWhatsApp />
