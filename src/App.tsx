@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
+import ThemeToggle from "./components/ThemeToggle";
 import Hero from "./pages/Hero";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -11,6 +12,8 @@ import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import Post from "./pages/Post";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
+import StickyHireMe from "./components/StickyHireMe";
+import ConsentBanner from "./components/ConsentBanner";
 
 const HomePage = () => (
   <>
@@ -37,6 +40,10 @@ const App = () => {
           <Route path="/posts/:slug" element={<Post />} />
         </Routes>
       </Router>
+
+      <ThemeToggle />
+      <StickyHireMe />
+      <ConsentBanner />
     </div>
   );
 };

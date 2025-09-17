@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import matter from "gray-matter";
@@ -6,7 +7,8 @@ import matter from "gray-matter";
 const Post = () => {
   const { slug } = useParams();
   const [content, setContent] = useState("");
-  const [meta, setMeta] = useState<{ title: string; date: string } | null>(null);
+  const [contentExcerpt, setContentExcerpt] = useState("");
+  const [meta, setMeta] = useState<{ title: string; date: string; excerpt?: string } | null>(null);
 
   useEffect(() => {
     const loadPost = async () => {
@@ -26,9 +28,11 @@ const Post = () => {
       const { content, data } = matter(raw as string);
 
       setContent(content);
+      setContentExcerpt((data.excerpt && typeof data.excerpt === 'string') ? data.excerpt : content.slice(0, 160));
       setMeta({
         title: typeof data.title === "string" ? data.title : "Untitled",
         date: typeof data.date === "string" ? data.date : "",
+        excerpt: typeof data.excerpt === 'string' ? data.excerpt : undefined,
       });
     };
 
@@ -39,6 +43,15 @@ const Post = () => {
     <section className="max-w-3xl px-4 py-20 mx-auto prose dark:prose-invert text-foreground">
       {meta ? (
         <>
+          <Helmet>
+            <title>{meta.title} | Charley Raluswinga</title>
+            <meta name="description" content={contentExcerpt} />
+            <meta property="og:title" content={meta.title} />
+            <meta property="og:description" content={contentExcerpt} />
+            <meta property="og:image" content={`https://charleyraluswinga.space/og/${slug}.png`} />
+            <meta property="og:type" content="article" />
+            <meta property="og:url" content={`https://charleyraluswinga.space/posts/${slug}`} />
+          </Helmet>
           <h1>{meta.title}</h1>
           <p className="mb-6 text-sm text-secondaryAccent">{meta.date}</p>
           <ReactMarkdown>{content}</ReactMarkdown>

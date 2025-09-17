@@ -6,5 +6,6 @@ export default defineConfig({
   build: {
     chunkSizeWarningLimit: 1000, // optional: suppress chunk warnings
   },
-base: "/emmanuel-charley-portfolio/", // critical for GitHub Pages
+  // When deploying to a custom domain (charleyraluswinga.space) we serve at root
+  base: "/",
 });

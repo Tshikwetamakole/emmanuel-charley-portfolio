@@ -56,6 +56,8 @@ This portfolio is automatically deployed to **GitHub Pages** via **GitHub Action
 > You can view the deployed version at:  
 > [https://tshikwetamakole.github.io/emmanuel-charley-portfolio](https://tshikwetamakole.github.io/emmanuel-charley-portfolio)
 
+If you'd like to use a custom domain (for example `charleyraluswinga.space`), this repository already supports that via the `public/CNAME` file and the `homepage` field in `package.json`. Follow the DNS instructions below to point your domain to GitHub Pages.
+
 ---
 
 ## 🛠 Local Development
@@ -136,6 +138,32 @@ npm run deploy    # Deploy to GitHub Pages
 - **Automated with GitHub Actions**
 - `homepage` field set in `package.json`
 - Deploys to GitHub Pages on `main` branch push
+
+### Custom domain (charleyraluswinga.space)
+
+1. Add a CNAME file
+    - A `CNAME` file with `charleyraluswinga.space` is already present in the `public/` directory. GitHub Pages will use this file when publishing.
+
+2. DNS settings (at your domain registrar)
+    - Add a single CNAME record:
+      - Host / Name: @ (or leave blank depending on registrar)
+      - Type: CNAME
+      - Value / Points to: Tshikwetamakole.github.io
+    - If your registrar requires A records for apex domains (no CNAME allowed), instead add these A records pointing to GitHub Pages IPs:
+      - 185.199.108.153
+      - 185.199.109.153
+      - 185.199.110.153
+      - 185.199.111.153
+
+3. Wait for DNS to propagate (minutes → 24 hours).
+
+4. Verify
+    - Visit `https://charleyraluswinga.space`. If it doesn't load immediately, check the repository Settings → Pages to confirm the custom domain is set and HTTPS is enabled. You can also run `dig +short charleyraluswinga.space` to inspect the resolved records.
+
+5. Troubleshooting
+    - If you see a 404 on the custom domain after publishing, confirm the `CNAME` file contains exactly `charleyraluswinga.space` (no extra whitespace) and that GitHub Pages shows the custom domain in repository Settings → Pages.
+    - Ensure your DNS record points to `Tshikwetamakole.github.io` (CNAME) or the A records above (apex domain).
+
 
 ### 📚 Notable Content
 - Featured article: [Introducing AI in African Schools](https://tshikwetamakole.github.io/emmanuel-charley-portfolio/posts/introducing-ai-in-african-schools)

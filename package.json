@@ -1,9 +1,13 @@
 {
   "name": "charley-portfolio-oliver-style",
   "version": "1.0.0",
-  "homepage": "https://Tshikwetamakole.github.io/emmanuel-charley-portfolio",
+  "homepage": "https://charleyraluswinga.space",
   "scripts": {
     "dev": "vite",
+  "optimize-images": "node scripts/optimize-images.js",
+  "generate-og": "node scripts/generate-og.js",
+  "generate-sitemap": "node scripts/generate-sitemap.js",
+  "prebuild": "npm run optimize-images && npm run generate-og && npm run generate-sitemap",
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
@@ -13,13 +17,16 @@
     "@emailjs/browser": "^4.4.1",
     "framer-motion": "^12.19.1",
     "gray-matter": "^4.0.3",
+    "lottie-react": "^2.4.1",
     "lucide-react": "^0.523.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-helmet-async": "^1.3.0",
     "react-icons": "^5.5.0",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^6.17.0",
-    "react-simple-typewriter": "^5.0.1"
+    "react-simple-typewriter": "^5.0.1",
+    "sharp": "^0.34.3"
   },
   "devDependencies": {
     "@types/node": "^24.0.4",

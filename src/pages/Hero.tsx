@@ -51,7 +51,10 @@ const Hero = () => {
       >
         <img
           src={`${import.meta.env.BASE_URL}profile.jpg`}
-          alt="Charley Raluswinga"
+          srcSet={`${import.meta.env.BASE_URL}profile.jpg 1x, ${import.meta.env.BASE_URL}charley2.jpg 2x`}
+          loading="lazy"
+          decoding="async"
+          alt="Emmanuel 'Charley' Raluswinga — profile photo"
           className="object-cover w-24 h-24 mx-auto mb-6 border-4 rounded-full shadow-lg sm:w-28 sm:h-28 md:w-32 md:h-32 border-accent"
         />
 

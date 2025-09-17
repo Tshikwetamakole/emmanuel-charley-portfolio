@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import ProjectModal from "../components/ProjectModal";
 
 const projects = [
   {
@@ -35,6 +36,8 @@ const projects = [
 ];
 
 const Projects = () => {
+  const [selected, setSelected] = React.useState<null | any>(null);
+
   return (
     <section id="projects" className="px-4 py-20 sm:px-6 bg-background text-foreground">
       <motion.h2 
@@ -49,13 +52,14 @@ const Projects = () => {
 
       <div className="grid grid-cols-1 gap-8 mx-auto sm:grid-cols-2 lg:grid-cols-3 max-w-7xl">
         {projects.map((project, index) => (
-          <motion.div 
+          <motion.button
             key={index}
+            onClick={() => setSelected({ ...project, images: ["/src/assets/portfolio-preview.png"] })}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1, duration: 0.4 }}
-            className="flex flex-col justify-between p-6 transition border shadow-md rounded-xl border-borderLine bg-background/90 hover:shadow-xl"
+            className="flex flex-col justify-between p-6 transition border shadow-md rounded-xl border-borderLine bg-background/90 hover:shadow-xl text-left"
           >
             <div>
               <h3 className="mb-2 text-xl font-semibold text-foreground">{project.title}</h3>
@@ -63,19 +67,12 @@ const Projects = () => {
               <p className="mb-4 text-xs text-secondaryAccent">Tech: {project.tech}</p>
             </div>
 
-            {project.link !== "#" && (
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-auto text-sm font-medium transition-colors text-accent hover:text-secondaryAccent hover:underline"
-              >
-                View Project →
-              </a>
-            )}
-          </motion.div>
+            <div className="mt-4 text-sm font-medium text-accent">Explore →</div>
+          </motion.button>
         ))}
       </div>
+
+      <ProjectModal project={selected} onClose={() => setSelected(null)} />
     </section>
   );
 };
