@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import portfolioPreview from "../assets/portfolio-preview.png";
 
 interface Project {
   title: string;
@@ -21,7 +22,7 @@ const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
 
   if (!project) return null;
 
-  const images = project.images && project.images.length > 0 ? project.images : ["/src/assets/portfolio-preview.png"];
+  const images = project.images && project.images.length > 0 ? project.images : [portfolioPreview];
 
   return (
     <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/60">
