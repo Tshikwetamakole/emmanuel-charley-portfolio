@@ -7,7 +7,7 @@ const ConsentBanner: React.FC = () => {
     localStorage.setItem('consent', 'yes');
     setShow(false);
     // load Plausible analytics if configured
-    const domain = (import.meta as any).env?.VITE_PLAUSIBLE_DOMAIN;
+    const domain = import.meta.env.VITE_PLAUSIBLE_DOMAIN;
     if (domain) {
       const s = document.createElement('script');
       s.setAttribute('defer', '');

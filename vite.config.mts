@@ -8,4 +8,10 @@ export default defineConfig({
   },
   // When deploying to a custom domain (charleyraluswinga.space) we serve at root
   base: "/",
+  define: {
+    global: 'globalThis',
+  },
+  optimizeDeps: {
+    include: ['buffer'],
+  },
 });
