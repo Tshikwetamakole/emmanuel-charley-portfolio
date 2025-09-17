@@ -1,8 +1,19 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Home, User, Briefcase, Code, BookOpen, Mail } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (href: string) => {
     const id = href.substring(1);
@@ -14,97 +25,128 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#services", label: "Services" },
-    { href: "#projects", label: "Projects" },
-    { href: "#blog", label: "Blog" },
-    { href: "#contact", label: "Contact" },
+    { href: "#home", label: "Home", icon: <Home size={18} /> },
+    { href: "#about", label: "About", icon: <User size={18} /> },
+    { href: "#services", label: "Services", icon: <Briefcase size={18} /> },
+    { href: "#skills", label: "Skills", icon: <Code size={18} /> },
+    { href: "#projects", label: "Projects", icon: <Briefcase size={18} /> },
+    { href: "#blog", label: "Blog", icon: <BookOpen size={18} /> },
+    { href: "#contact", label: "Contact", icon: <Mail size={18} /> },
   ];
 
   return (
-    <nav className="sticky top-0 z-50 w-full px-6 py-4 shadow-sm bg-background text-foreground">
-      <div className="flex items-center justify-between max-w-screen-xl mx-auto">
+    <motion.nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-background/80 backdrop-blur-xl border-b border-white/10 shadow-lg"
+          : "bg-transparent"
+      }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
+      <div className="flex items-center justify-between max-w-screen-xl px-6 py-4 mx-auto">
         {/* Logo / Name */}
         <motion.div
-          className="text-xl font-bold cursor-pointer text-accent"
-          whileHover={{ scale: 1.1 }}
+          className="text-xl font-bold cursor-pointer text-accent hover:text-secondaryAccent transition-colors duration-300"
+          whileHover={{ scale: 1.05 }}
           onClick={() => scrollToSection("#home")}
         >
           Charley
         </motion.div>
 
         {/* Desktop Nav */}
-        <ul className="hidden space-x-6 text-sm font-medium md:flex">
+        <ul className="hidden space-x-1 md:flex">
           {navLinks.map(link => (
             <li key={link.href}>
-              <a
+              <motion.a
                 href={link.href}
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(link.href);
                 }}
-                className="transition-colors hover:text-accent"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-300 rounded-xl text-foreground/80 hover:text-accent hover:bg-accent/10"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
+                {link.icon}
                 {link.label}
-              </a>
+              </motion.a>
             </li>
           ))}
         </ul>
 
         {/* Mobile Hamburger */}
-        <button
-          className="md:hidden focus:outline-none"
+        <motion.button
+          className="md:hidden p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors duration-200"
           onClick={() => setIsOpen(prev => !prev)}
           aria-label="Toggle menu"
+          whileTap={{ scale: 0.95 }}
         >
-          <svg
-            className="w-6 h-6 text-foreground"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d={
-                isOpen
-                  ? "M6 18L18 6M6 6l12 12" // X icon
-                  : "M4 6h16M4 12h16M4 18h16" // Hamburger icon
-              }
-            />
-          </svg>
-        </button>
+          <AnimatePresence mode="wait">
+            {isOpen ? (
+              <motion.div
+                key="close"
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <X size={20} className="text-foreground" />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="menu"
+                initial={{ rotate: 90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: -90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Menu size={20} className="text-foreground" />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.button>
       </div>
 
       {/* Mobile Menu */}
-      <motion.div
-        className={`md:hidden mt-2 overflow-hidden transition-all duration-300 bg-background rounded-md shadow-md ${
-          isOpen ? "max-h-[300px] py-4" : "max-h-0 py-0"
-        }`}
-        initial={false}
-        animate={{ height: isOpen ? "auto" : 0 }}
-      >
-        <ul className="flex flex-col items-center space-y-4 text-sm font-medium">
-          {navLinks.map(link => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(link.href);
-                }}
-                className="transition-colors hover:text-secondaryAccent"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </motion.div>
-    </nav>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="md:hidden bg-background/95 backdrop-blur-xl border-t border-white/10"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="px-6 py-4">
+              <ul className="space-y-2">
+                {navLinks.map((link, index) => (
+                  <motion.li
+                    key={link.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.3 }}
+                  >
+                    <a
+                      href={link.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection(link.href);
+                      }}
+                      className="flex items-center gap-3 px-4 py-3 text-sm font-medium transition-all duration-300 rounded-xl text-foreground/80 hover:text-accent hover:bg-accent/10"
+                    >
+                      {link.icon}
+                      {link.label}
+                    </a>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 };
 
