@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Award, Users, TrendingUp, Calendar } from "lucide-react";
+import InteractiveTimeline from "../components/InteractiveTimeline";
 
 const About = () => {
   return (
@@ -127,6 +128,17 @@ const About = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Interactive Career Timeline */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.0 }}
+          viewport={{ once: true }}
+          className="mt-16"
+        >
+          <InteractiveTimeline />
+        </motion.div>
       </div>
     </section>
   );

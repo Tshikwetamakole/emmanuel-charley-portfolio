@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Code, Database, Cloud, Palette, Smartphone, Zap, Star, Award } from "lucide-react";
+import TechRadar from "../components/TechRadar";
 
 const skillCategories = [
   {
@@ -165,6 +166,17 @@ const Skills = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Interactive Tech Radar */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.9 }}
+          viewport={{ once: true }}
+          className="mt-16"
+        >
+          <TechRadar />
+        </motion.div>
 
         {/* Additional Skills Section */}
         <motion.div
