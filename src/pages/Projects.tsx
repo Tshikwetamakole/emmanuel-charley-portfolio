@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import ProjectModal from "../components/ProjectModal";
+import portfolioPreview from "../assets/portfolio-preview.png";
 
 const projects = [
   {
@@ -54,7 +55,7 @@ const Projects = () => {
         {projects.map((project, index) => (
           <motion.button
             key={index}
-            onClick={() => setSelected({ ...project, images: ["/src/assets/portfolio-preview.png"] })}
+            onClick={() => setSelected({ ...project, images: [portfolioPreview] })}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
