@@ -10,6 +10,7 @@
     "prebuild": "npm run optimize-images && npm run generate-og && npm run generate-sitemap",
     "build": "vite build",
     "test": "vitest",
+    "test:scripts": "node --test scripts/generate-og.test.js",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"

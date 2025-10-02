@@ -8,6 +8,12 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/scripts/**',
+      '**/.{idea,git,cache,output,temp}/**',
+    ],
   },
   build: {
     chunkSizeWarningLimit: 1000, // optional: suppress chunk warnings
