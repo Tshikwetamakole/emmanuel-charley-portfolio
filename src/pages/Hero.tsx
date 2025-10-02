@@ -2,8 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import { Download, Eye, MessageCircle, ArrowDown } from "lucide-react";
-import heroBackground from "../assets/hero-background.jpg";
-import animationData from "../assets/animations/wired-arrow.json";
+import animationData from "../../public/animations/animations/12345.json";
 import LottieIcon from "../components/LottieIcon";
 
 const Hero = () => {
@@ -37,25 +36,20 @@ const Hero = () => {
   return (
     <motion.section
       className="relative flex items-center justify-center min-h-screen px-4 sm:px-6 text-center text-foreground dark:text-white overflow-hidden"
-      style={{
-        backgroundImage: `url(${heroBackground})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-      }}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
+      {/* Lottie Animation Background */}
+      <div className="absolute inset-0 w-full h-full z-0">
+        <LottieIcon
+          animation={animationData}
+          className="w-full h-full object-cover"
+        />
+      </div>
+
       {/* Enhanced Overlay with Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/40 backdrop-blur-[2px]" />
-
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-accent/10 rounded-full blur-xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-secondaryAccent/10 rounded-full blur-xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-accent/5 rounded-full blur-lg animate-bounce delay-500" />
-      </div>
 
       {/* Glass container with enhanced styling */}
       <motion.div
@@ -112,16 +106,6 @@ const Hero = () => {
           I create sleek, scalable, and human-centered digital experiences that
           connect brands and people — across Africa and beyond.
         </motion.p>
-
-        {/* Enhanced Lottie Animation */}
-        <motion.div
-          className="flex justify-center mb-8"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 1 }}
-        >
-          <LottieIcon animation={animationData} className="w-40 h-40 sm:w-48 sm:h-48" />
-        </motion.div>
 
         {/* Enhanced Buttons */}
         <motion.div

@@ -18,39 +18,35 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
-    const honeypot = form.querySelector('input[name="_gotcha"]') as HTMLInputElement;
-
-    // If spam is detected, log it
-    if (honeypot?.value) {
-      fetch("https://webhook.site/c0b50812-dd37-49a0-8a83-7329d48ac561", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          type: "spam-detected",
-          timestamp: new Date().toISOString(),
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-          gotcha: honeypot.value,
-        }),
-      });
-
-      setStatus("error");
-      return;
-    }
+    const data = new FormData(form);
 
     setIsSubmitting(true);
+    setStatus(null);
 
-    // Simulate success
-    setTimeout(() => {
+    try {
+      const response = await fetch("https://formspree.io/f/xnngvblg", {
+        method: "POST",
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      setStatus("error");
+    } finally {
       setIsSubmitting(false);
-      setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
-      form.reset();
-    }, 1200);
+    }
   };
 
   return (
