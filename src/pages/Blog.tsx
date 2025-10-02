@@ -15,10 +15,10 @@ const Blog = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const modules = import.meta.glob('../posts/*.md', { as: 'raw' });
+      const modules = import.meta.glob('../posts/*.md', { query: '?raw', import: 'default' });
 
       const postListPromises = Object.entries(modules).map(async ([path, resolver]) => {
-        const rawContent = await resolver();
+        const rawContent = await resolver() as string;
         const { data } = matter(rawContent);
         const slug = path.split('/').pop()!.replace('.md', '');
 
