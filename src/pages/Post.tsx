@@ -46,11 +46,27 @@ const Post = () => {
           <Helmet>
             <title>{meta.title} | Charley Raluswinga</title>
             <meta name="description" content={contentExcerpt} />
+            <meta name="author" content="Emmanuel 'Charley' Raluswinga" />
+            <meta name="robots" content="index, follow, max-image-preview:large" />
+            <link rel="canonical" href={`https://charleyraluswinga.space/posts/${slug}`} />
+            
+            {/* Open Graph */}
             <meta property="og:title" content={meta.title} />
             <meta property="og:description" content={contentExcerpt} />
             <meta property="og:image" content={`https://charleyraluswinga.space/og/${slug}.png`} />
             <meta property="og:type" content="article" />
             <meta property="og:url" content={`https://charleyraluswinga.space/posts/${slug}`} />
+            <meta property="og:site_name" content="Charley Raluswinga Portfolio" />
+            <meta property="article:published_time" content={meta.date} />
+            <meta property="article:author" content="Emmanuel 'Charley' Raluswinga" />
+            
+            {/* Twitter */}
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:site" content="@Tshikwetamakole" />
+            <meta name="twitter:creator" content="@Tshikwetamakole" />
+            <meta name="twitter:title" content={meta.title} />
+            <meta name="twitter:description" content={contentExcerpt} />
+            <meta name="twitter:image" content={`https://charleyraluswinga.space/og/${slug}.png`} />
           </Helmet>
           <h1>{meta.title}</h1>
           <p className="mb-6 text-sm text-secondaryAccent">{meta.date}</p>

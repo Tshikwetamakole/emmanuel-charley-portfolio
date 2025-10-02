@@ -16,11 +16,16 @@ function getPosts() {
 }
 
 function build() {
+  const now = new Date().toISOString();
   const pages = [
-    { loc: `${SITE}/`, changefreq: 'daily', priority: '1.0' },
-    { loc: `${SITE}/#about`, changefreq: 'monthly', priority: '0.8' },
-    { loc: `${SITE}/#projects`, changefreq: 'monthly', priority: '0.8' },
-    { loc: `${SITE}/#blog`, changefreq: 'weekly', priority: '0.7' }
+    { loc: `${SITE}/`, lastmod: now, changefreq: 'daily', priority: '1.0' },
+    { loc: `${SITE}/#about`, lastmod: now, changefreq: 'monthly', priority: '0.8' },
+    { loc: `${SITE}/#services`, lastmod: now, changefreq: 'monthly', priority: '0.8' },
+    { loc: `${SITE}/#skills`, lastmod: now, changefreq: 'monthly', priority: '0.8' },
+    { loc: `${SITE}/#projects`, lastmod: now, changefreq: 'monthly', priority: '0.9' },
+    { loc: `${SITE}/#github`, lastmod: now, changefreq: 'weekly', priority: '0.7' },
+    { loc: `${SITE}/#blog`, lastmod: now, changefreq: 'weekly', priority: '0.9' },
+    { loc: `${SITE}/#contact`, lastmod: now, changefreq: 'monthly', priority: '0.7' }
   ];
 
   const posts = getPosts();
@@ -30,6 +35,7 @@ function build() {
   pages.forEach(p => {
     xml.push('  <url>');
     xml.push(`    <loc>${p.loc}</loc>`);
+    if (p.lastmod) xml.push(`    <lastmod>${p.lastmod}</lastmod>`);
     if (p.changefreq) xml.push(`    <changefreq>${p.changefreq}</changefreq>`);
     if (p.priority) xml.push(`    <priority>${p.priority}</priority>`);
     xml.push('  </url>');
