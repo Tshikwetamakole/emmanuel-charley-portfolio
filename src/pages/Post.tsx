@@ -4,12 +4,14 @@ import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import matter from "gray-matter";
 import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Clock } from "lucide-react";
+import { calculateReadingTime, formatReadingTime } from "../utils/readingTime";
 
 const Post = () => {
   const { slug } = useParams();
   const [content, setContent] = useState("");
   const [contentExcerpt, setContentExcerpt] = useState("");
+  const [readingTime, setReadingTime] = useState("");
   const [meta, setMeta] = useState<{ title: string; date: string; excerpt?: string } | null>(null);
 
   useEffect(() => {
@@ -31,6 +33,8 @@ const Post = () => {
 
       setContent(content);
       setContentExcerpt((data.excerpt && typeof data.excerpt === 'string') ? data.excerpt : content.slice(0, 160));
+      const readingMinutes = calculateReadingTime(content);
+      setReadingTime(formatReadingTime(readingMinutes));
       setMeta({
         title: typeof data.title === "string" ? data.title : "Untitled",
         date: typeof data.date === "string" ? new Date(data.date).toISOString().split('T')[0] : "",
@@ -87,7 +91,13 @@ const Post = () => {
           </div>
 
           <h1 className="text-4xl font-bold text-accent">{meta.title}</h1>
-          <p className="mb-8 text-sm text-secondaryAccent">{meta.date}</p>
+          <div className="flex items-center gap-4 mb-8">
+            <p className="text-sm text-secondaryAccent">{meta.date}</p>
+            <div className="flex items-center gap-1 text-sm text-foreground/60">
+              <Clock size={14} />
+              <span>{readingTime}</span>
+            </div>
+          </div>
           <ReactMarkdown>{content}</ReactMarkdown>
         </motion.article>
       ) : (

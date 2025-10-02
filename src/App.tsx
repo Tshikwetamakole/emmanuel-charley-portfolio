@@ -8,6 +8,8 @@ import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import StickyHireMe from "./components/StickyHireMe";
 import ConsentBanner from "./components/ConsentBanner";
 import Preloader from "./components/Preloader";
+import ScrollProgress from "./components/ScrollProgress";
+import BackToTop from "./components/BackToTop";
 
 // Lazy load page sections and pages
 const Hero = lazy(() => import("./pages/Hero"));
@@ -15,8 +17,11 @@ const About = lazy(() => import("./pages/About"));
 const Services = lazy(() => import("./pages/Services"));
 const Skills = lazy(() => import("./pages/Skills"));
 const Projects = lazy(() => import("./pages/Projects"));
+const Achievements = lazy(() => import("./pages/Achievements"));
+const Testimonials = lazy(() => import("./pages/Testimonials"));
 const GitHub = lazy(() => import("./pages/GitHub"));
 const BlogPreview = lazy(() => import("./components/BlogPreview"));
+const CurrentLearning = lazy(() => import("./components/CurrentLearning"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Post = lazy(() => import("./pages/Post"));
@@ -28,7 +33,10 @@ const HomePage = () => (
       <section id="about"><About /></section>
       <section id="services"><Services /></section>
       <section id="skills"><Skills /></section>
+      <CurrentLearning />
       <section id="projects"><Projects /></section>
+      <section id="achievements"><Achievements /></section>
+      <section id="testimonials"><Testimonials /></section>
       <section id="github"><GitHub /></section>
       <BlogPreview />
       <section id="contact"><Contact /></section>
@@ -39,6 +47,7 @@ const HomePage = () => (
 const App = () => {
   return (
     <div className="text-white bg-gray-900 scroll-smooth">
+      <ScrollProgress />
       <Router>
         <Navbar />
         <main>
@@ -55,6 +64,7 @@ const App = () => {
 
       <ThemeToggle />
       <StickyHireMe />
+      <BackToTop />
       <ConsentBanner />
     </div>
   );
