@@ -30,66 +30,65 @@ const GitHubActivityFeed: React.FC = () => {
   const fetchGitHubData = async () => {
     try {
       setError(null);
-      // Note: In a real implementation, you'd use GitHub API
-      // For demo purposes, we'll simulate the data
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API delay
+      const username = 'Tshikwetamakole';
       
-      const mockData: GitHubActivity = {
-        repos: [
-          {
-            name: "emmanuel-charley-portfolio",
-            description: "Modern portfolio website built with React, TypeScript, and Tailwind CSS",
-            html_url: "https://github.com/Tshikwetamakole/emmanuel-charley-portfolio",
-            stargazers_count: 12,
-            language: "TypeScript",
-            updated_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-            created_at: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
-            topics: ["portfolio", "react", "typescript", "tailwindcss"]
-          },
-          {
-            name: "hyka-e-hailing-app",
-            description: "Ride-sharing mobile app for underserved communities",
-            html_url: "https://github.com/example/hyka-e-hailing-app",
-            stargazers_count: 8,
-            language: "React Native",
-            updated_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
-            created_at: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString(),
-            topics: ["mobile", "react-native", "hackathon"]
-          },
-          {
-            name: "community-connect-api",
-            description: "RESTful API for community safety and reporting platform",
-            html_url: "https://github.com/example/community-connect-api",
-            stargazers_count: 15,
-            language: "C#",
-            updated_at: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
-            created_at: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000).toISOString(),
-            topics: ["api", "csharp", "community", "safety"]
-          },
-          {
-            name: "ai-content-platform",
-            description: "AI-powered content management system with automated workflows",
-            html_url: "https://github.com/example/ai-content-platform",
-            stargazers_count: 23,
-            language: "Python",
-            updated_at: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
-            created_at: new Date(Date.now() - 120 * 24 * 60 * 60 * 1000).toISOString(),
-            topics: ["ai", "python", "cms", "automation"]
-          }
-        ],
-        totalRepos: 15,
-        totalStars: 58,
-        languages: {
-          "TypeScript": 35,
-          "JavaScript": 25,
-          "Python": 20,
-          "C#": 15,
-          "CSS": 5
-        },
+      // Fetch user repositories from GitHub API
+      const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
+      
+      if (!reposResponse.ok) {
+        throw new Error('Failed to fetch repositories');
+      }
+      
+      const repos = await reposResponse.json();
+      
+      // Filter out forks and sort by last updated
+      const ownRepos = repos.filter((repo: any) => !repo.fork);
+      
+      // Calculate total stars
+      const totalStars = ownRepos.reduce((sum: number, repo: any) => sum + repo.stargazers_count, 0);
+      
+      // Calculate language distribution
+      const languageCounts: { [key: string]: number } = {};
+      ownRepos.forEach((repo: any) => {
+        if (repo.language) {
+          languageCounts[repo.language] = (languageCounts[repo.language] || 0) + 1;
+        }
+      });
+      
+      // Convert to percentages
+      const totalWithLanguage = Object.values(languageCounts).reduce((sum: number, count: number) => sum + count, 0);
+      const languages: { [key: string]: number } = {};
+      Object.entries(languageCounts).forEach(([lang, count]) => {
+        languages[lang] = Math.round((count / totalWithLanguage) * 100);
+      });
+      
+      // Sort languages by percentage and take top 5
+      const sortedLanguages = Object.entries(languages)
+        .sort(([, a], [, b]) => b - a)
+        .slice(0, 5)
+        .reduce((obj, [key, val]) => ({ ...obj, [key]: val }), {});
+      
+      // Format repos for display (top 4 most recently updated)
+      const formattedRepos: GitHubRepo[] = ownRepos.slice(0, 4).map((repo: any) => ({
+        name: repo.name,
+        description: repo.description || 'No description provided',
+        html_url: repo.html_url,
+        stargazers_count: repo.stargazers_count,
+        language: repo.language || 'Unknown',
+        updated_at: repo.updated_at,
+        created_at: repo.created_at,
+        topics: repo.topics || []
+      }));
+      
+      const activityData: GitHubActivity = {
+        repos: formattedRepos,
+        totalRepos: ownRepos.length,
+        totalStars,
+        languages: sortedLanguages,
         lastUpdate: new Date().toISOString()
       };
 
-      setActivity(mockData);
+      setActivity(activityData);
     } catch (err) {
       setError('Failed to fetch GitHub data');
       console.error('GitHub API Error:', err);
