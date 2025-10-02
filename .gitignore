@@ -1,4 +1,7 @@
 node_modules
 dist
-echo ".env" >> .gitignore
-notesnode_modules/
+notes.txt
+.DS_Store
+
+# Log files
+*.log
