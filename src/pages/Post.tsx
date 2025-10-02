@@ -6,6 +6,7 @@ import matter from "gray-matter";
 import { motion } from "framer-motion";
 import { ArrowLeft, Clock } from "lucide-react";
 import { calculateReadingTime, formatReadingTime } from "../utils/readingTime";
+import SocialShare from "../components/SocialShare";
 
 const Post = () => {
   const { slug } = useParams();
@@ -99,6 +100,15 @@ const Post = () => {
             </div>
           </div>
           <ReactMarkdown>{content}</ReactMarkdown>
+          
+          {/* Social Share Section */}
+          <div className="mt-12 pt-8 border-t border-white/10">
+            <SocialShare
+              title={meta.title}
+              url={`https://charleyraluswinga.space/posts/${slug}`}
+              excerpt={meta.excerpt || ""}
+            />
+          </div>
         </motion.article>
       ) : (
         <div className="flex items-center justify-center min-h-[60vh]">

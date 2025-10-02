@@ -4,6 +4,7 @@ import { Typewriter } from "react-simple-typewriter";
 import { Download, Eye, MessageCircle, ArrowDown } from "lucide-react";
 import animationData from "../../public/animations/animations/12345.json";
 import LottieIcon from "../components/LottieIcon";
+import { AvailabilityCard } from "../components/AvailabilityStatus";
 
 const Hero = () => {
   const handleDownload = () => {
@@ -150,12 +151,22 @@ const Hero = () => {
           </motion.a>
         </motion.div>
 
+        {/* Availability Status */}
+        <motion.div
+          className="flex justify-center mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.3 }}
+        >
+          <AvailabilityCard />
+        </motion.div>
+
         {/* Scroll Indicator */}
         <motion.div
           className="flex justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1.4 }}
+          transition={{ duration: 0.6, delay: 1.5 }}
         >
           <motion.button
             onClick={scrollToAbout}

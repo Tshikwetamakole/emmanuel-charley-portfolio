@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Clock } from "lucide-react";
 import { calculateReadingTime, formatReadingTime } from "../utils/readingTime";
+import Newsletter from "../components/Newsletter";
 
 interface BlogPostMeta {
   title: string;
@@ -101,6 +102,9 @@ const BlogPage = () => {
               </motion.div>
             ))}
           </div>
+          
+          {/* Newsletter Section */}
+          <Newsletter />
         </div>
       </section>
     </>
