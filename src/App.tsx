@@ -35,7 +35,7 @@ const HomePage = () => (
 
 const App = () => {
   return (
-    <div className="text-white bg-gray-900 scroll-smooth">
+    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white scroll-smooth min-h-screen transition-colors duration-300">
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
