@@ -1,196 +1,456 @@
-# Emmanuel Charley Portfolio
+<div align="center">
 
-![Deploy to GitHub Pages](https://github.com/Tshikwetamakole/emmanuel-charley-portfolio/actions/workflows/deploy.yml/badge.svg)
+# 🌟 Emmanuel Charley Portfolio
 
-A sleek, animated, and modern developer portfolio built with React, TypeScript, Tailwind CSS, and Framer Motion.
+### A Modern Developer Portfolio Built with React, TypeScript & Tailwind CSS
 
-👉 **Live Site:** [https://tshikwetamakole.github.io/emmanuel-charley-portfolio](https://tshikwetamakole.github.io/emmanuel-charley-portfolio)
+[![Deploy to GitHub Pages](https://github.com/Tshikwetamakole/emmanuel-charley-portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/Tshikwetamakole/emmanuel-charley-portfolio/actions/workflows/deploy.yml)
+[![React](https://img.shields.io/badge/React-18.2.0-61DAFB?logo=react&logoColor=white)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-7.0.0-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.17-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+[**🌐 Live Demo**](https://charleyraluswinga.space) • [**📝 Blog**](https://charleyraluswinga.space/#blog) • [**📧 Contact**](https://charleyraluswinga.space/#contact)
 
 ![Portfolio Preview](https://raw.githubusercontent.com/Tshikwetamakole/emmanuel-charley-portfolio/main/src/assets/portfolio-preview.png)
 
----
-
-## 🚀 Features
-
-- ⚡ Lightning-fast Vite + React setup
-- 🎨 Custom UI/UX design with Tailwind CSS
-- 💫 Smooth animations using Framer Motion
-- 🌗 Dark mode (toggle supported)
-- ✍️ Blog powered by Markdown + React Markdown
-- 📬 Contact form with EmailJS integration
-- 📱 Fully responsive for all devices
-- 💬 WhatsApp contact shortcut
+</div>
 
 ---
 
-## 📁 Project Structure
+## 📑 Table of Contents
 
-src/
-├── assets/ # Images & media
-├── components/ # Reusable components (Navbar, etc.)
-├── pages/ # Section components (Hero, About, Blog, etc.)
-├── posts/ # Markdown blog content
-├── App.tsx # Main app layout
-├── main.tsx # React entry point
-├── index.css # Tailwind styles
-
----
-
-## 🔧 Tech Stack
-
-- **React** + **TypeScript**
-- **Vite** for bundling
-- **Tailwind CSS** for styling
-- **Framer Motion** for animation
-- **EmailJS** for contact form handling
-- **React Router DOM** (used optionally)
-- **React Markdown** + **Gray Matter** for blog rendering
-- **gh-pages** for deployment
+- [✨ Features](#-features)
+- [🚀 Quick Start](#-quick-start)
+- [🏗️ Project Structure](#️-project-structure)
+- [🔧 Tech Stack](#-tech-stack)
+- [📝 Adding Blog Posts](#-adding-blog-posts)
+- [🌍 Deployment](#-deployment)
+- [🎨 Customization](#-customization)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+- [👨‍💻 Author](#-author)
 
 ---
 
-## 🚀 Deployment
+## ✨ Features
 
-This portfolio is automatically deployed to **GitHub Pages** via **GitHub Actions** on every push to `main`.
-
-> You can view the deployed version at:  
-> [https://tshikwetamakole.github.io/emmanuel-charley-portfolio](https://tshikwetamakole.github.io/emmanuel-charley-portfolio)
-
-If you'd like to use a custom domain (for example `charleyraluswinga.space`), this repository already supports that via the `public/CNAME` file and the `homepage` field in `package.json`. Follow the DNS instructions below to point your domain to GitHub Pages.
+<table>
+  <tr>
+    <td>⚡</td>
+    <td><strong>Lightning Fast</strong><br/>Built with Vite for optimal performance and instant HMR</td>
+  </tr>
+  <tr>
+    <td>🎨</td>
+    <td><strong>Modern UI/UX</strong><br/>Sleek design with Tailwind CSS and smooth animations</td>
+  </tr>
+  <tr>
+    <td>💫</td>
+    <td><strong>Framer Motion</strong><br/>Beautiful page transitions and interactive animations</td>
+  </tr>
+  <tr>
+    <td>🌗</td>
+    <td><strong>Dark Mode</strong><br/>Toggle between light and dark themes seamlessly</td>
+  </tr>
+  <tr>
+    <td>✍️</td>
+    <td><strong>Markdown Blog</strong><br/>Write posts in Markdown with frontmatter support</td>
+  </tr>
+  <tr>
+    <td>📬</td>
+    <td><strong>Contact Form</strong><br/>Formspree integration with spam protection</td>
+  </tr>
+  <tr>
+    <td>📱</td>
+    <td><strong>Fully Responsive</strong><br/>Optimized for all screen sizes and devices</td>
+  </tr>
+  <tr>
+    <td>🔍</td>
+    <td><strong>SEO Optimized</strong><br/>Meta tags, OG images, and sitemap generation</td>
+  </tr>
+  <tr>
+    <td>♿</td>
+    <td><strong>Accessible</strong><br/>WCAG compliant with semantic HTML</td>
+  </tr>
+  <tr>
+    <td>💬</td>
+    <td><strong>WhatsApp Integration</strong><br/>Floating button for quick contact</td>
+  </tr>
+</table>
 
 ---
 
-## 🛠 Local Development
+## 🚀 Quick Start
+
+### Prerequisites
+
+- **Node.js** 16.x or higher
+- **npm** or **yarn** package manager
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/Tshikwetamakole/emmanuel-charley-portfolio.git
+
+# Navigate to project directory
+cd emmanuel-charley-portfolio
+
 # Install dependencies
 npm install
 
-# Run in dev mode
+# Start development server
 npm run dev
+```
 
-# Build for production
+The app will be available at `http://localhost:5173`
+
+### Build for Production
+
+```bash
+# Build optimized production bundle
 npm run build
 
-# Deploy manually (optional)
+# Preview production build locally
+npm run preview
+
+# Deploy to GitHub Pages
 npm run deploy
 ```
 
 ---
 
-## 📁 Project Declaration – Emmanuel Charley Portfolio
+## 🏗️ Project Structure
 
-### 🎯 Purpose
-This project is a **personal developer portfolio** website for Emmanuel "Charley" Raluswinga, designed to:
-- Present skills, projects, services, and blog content.
-- Offer downloadable and viewable resume access.
-- Enable contact via Email, WhatsApp, and Facebook.
-- Serve as a professional online presence for tech opportunities in Africa and beyond.
-
-### ⚙️ Tech Stack
-- **Frontend:** React 18 + TypeScript + Vite
-- **Styling:** Tailwind CSS 3 + custom colors
-- **Animations:** Framer Motion
-- **Routing:** React Router DOM
-- **Markdown Blog:** React Markdown + Gray Matter
-- **Contact Form:** Formspree + honeypot + webhook logging
-- **Deployment:** GitHub Pages via GitHub Actions
-- **Additional Tools:** EmailJS (optional), Lucide Icons, React Icons, Typewriter animation
-
-### 🧩 Folder Structure
-📁 src/
-│   ├── assets/             # Images, background, profile
-│   ├── components/         # Navbar, FloatingWhatsApp
-│   ├── pages/              # Hero.tsx, About.tsx, Blog.tsx, Post.tsx, Contact.tsx, etc.
-│   ├── posts/              # Markdown articles (*.md)
-│   ├── App.tsx             # Main app layout with routing
-│   ├── main.tsx            # Entry point
-│   └── index.css           # Tailwind styles
-📁 public/
-│   ├── resume.pdf          # Resume for view/download
-│   └── profile.jpg         # Profile picture
-
-### 🌍 Live Site
-> **URL:** [https://tshikwetamakole.github.io/emmanuel-charley-portfolio](https://tshikwetamakole.github.io/emmanuel-charley-portfolio)
-
-### 📝 How to Add a New Blog Post
-
-Adding a new blog post is simple and doesn't require any coding. Just follow these steps:
-
-1.  **Go to the Posts Folder:**
-    -   Navigate to the `src/posts/` directory in this repository.
-
-2.  **Use the Template:**
-    -   You will find a file named `template.md`. This is your starting point for any new post.
-    -   Duplicate this file.
-
-3.  **Rename Your New File:**
-    -   Rename your duplicated file to match your post's title. Use lowercase letters and hyphens instead of spaces.
-    -   For example, a post titled "My First Article" should be named `my-first-article.md`.
-
-4.  **Edit the Content:**
-    -   Open your new file and you'll see a section at the top between `---` lines. This is the "frontmatter."
-    -   **`title`**: Change this to your post's title.
-    -   **`date`**: Set the publication date in `YYYY-MM-DD` format.
-    -   **`excerpt`**: Write a short, one-sentence summary. This appears in the blog list.
-    -   Below the frontmatter, replace the instructional text with your own article content using Markdown.
-
-That's it! Once you commit and push the new file, it will automatically appear on your blog.
-
-### 📬 Contact Form
-- **Formspree endpoint:** `https://formspree.io/f/xnnvezby`
-- **Spam Protection:** Honeypot input + webhook log to Webhook.site
-- **Webhook log URL:** `https://webhook.site/c0b50812-dd37-49a0-8a83-7329d48ac561`
-- **Extras:** Floating WhatsApp button, resume viewer and downloader
-
-### 🧪 Local Development
-
-```bash
-npm install       # Install dependencies
-npm run dev       # Start dev server
-npm run build     # Build for production
-npm run deploy    # Deploy to GitHub Pages
+```
+emmanuel-charley-portfolio/
+├── 📁 public/              # Static assets
+│   ├── resume.pdf          # Downloadable resume
+│   ├── profile.jpg         # Profile picture
+│   ├── CNAME              # Custom domain configuration
+│   └── og/                # Open Graph images
+├── 📁 src/
+│   ├── 📁 assets/          # Images and media files
+│   ├── 📁 components/      # Reusable React components
+│   │   ├── Navbar.tsx
+│   │   ├── FloatingWhatsApp.tsx
+│   │   └── ...
+│   ├── 📁 pages/           # Page components
+│   │   ├── Hero.tsx
+│   │   ├── About.tsx
+│   │   ├── Blog.tsx
+│   │   ├── Post.tsx
+│   │   ├── Contact.tsx
+│   │   └── ...
+│   ├── 📁 posts/           # Markdown blog posts
+│   │   ├── template.md
+│   │   └── *.md
+│   ├── App.tsx             # Main application component
+│   ├── main.tsx            # Application entry point
+│   └── index.css           # Global styles (Tailwind)
+├── 📁 scripts/             # Build and optimization scripts
+│   ├── generate-og.js      # Generate OG images
+│   ├── optimize-images.js  # Image optimization
+│   └── generate-sitemap.js # Sitemap generation
+├── 📁 server/              # Optional backend server
+├── vite.config.mts         # Vite configuration
+├── tailwind.config.js      # Tailwind CSS configuration
+└── package.json            # Project dependencies
 ```
 
-### 🏗 Deployment
-- **Automated with GitHub Actions**
-- `homepage` field set in `package.json`
-- Deploys to GitHub Pages on `main` branch push
+---
 
-### Custom domain (charleyraluswinga.space)
+## 🔧 Tech Stack
 
-1. Add a CNAME file
-    - A `CNAME` file with `charleyraluswinga.space` is already present in the `public/` directory. GitHub Pages will use this file when publishing.
+### Core Technologies
 
-2. DNS settings (at your domain registrar)
-    - Add a single CNAME record:
-      - Host / Name: @ (or leave blank depending on registrar)
-      - Type: CNAME
-      - Value / Points to: Tshikwetamakole.github.io
-    - If your registrar requires A records for apex domains (no CNAME allowed), instead add these A records pointing to GitHub Pages IPs:
-      - 185.199.108.153
-      - 185.199.109.153
-      - 185.199.110.153
-      - 185.199.111.153
+| Technology | Version | Purpose |
+|-----------|---------|---------|
+| [React](https://reactjs.org/) | 18.2.0 | UI library |
+| [TypeScript](https://www.typescriptlang.org/) | 5.0.0 | Type safety |
+| [Vite](https://vitejs.dev/) | 7.0.0 | Build tool |
+| [Tailwind CSS](https://tailwindcss.com/) | 3.4.17 | Styling |
 
-3. Wait for DNS to propagate (minutes → 24 hours).
+### Key Libraries
 
-4. Verify
-    - Visit `https://charleyraluswinga.space`. If it doesn't load immediately, check the repository Settings → Pages to confirm the custom domain is set and HTTPS is enabled. You can also run `dig +short charleyraluswinga.space` to inspect the resolved records.
+- **🎭 Framer Motion** - Animation library
+- **🎨 Tailwind Typography** - Beautiful typography plugin
+- **📝 React Markdown** - Markdown rendering
+- **🎯 Gray Matter** - Frontmatter parsing
+- **🧭 React Router DOM** - Client-side routing
+- **✨ Lucide React** - Icon library
+- **⌨️ React Simple Typewriter** - Typewriter effect
 
-5. Troubleshooting
-    - If you see a 404 on the custom domain after publishing, confirm the `CNAME` file contains exactly `charleyraluswinga.space` (no extra whitespace) and that GitHub Pages shows the custom domain in repository Settings → Pages.
-    - Ensure your DNS record points to `Tshikwetamakole.github.io` (CNAME) or the A records above (apex domain).
+### DevOps & Deployment
 
+- **GitHub Actions** - CI/CD automation
+- **GitHub Pages** - Static site hosting
+- **Sharp** - Image optimization
+- **Vitest** - Unit testing framework
 
-### 📚 Notable Content
-- Featured article: [Introducing AI in African Schools](https://tshikwetamakole.github.io/emmanuel-charley-portfolio/posts/introducing-ai-in-african-schools)
-- Resume: Included in `/public/resume.pdf`, downloadable and viewable
+---
+
+## 📝 Adding Blog Posts
+
+Creating a new blog post is simple and requires no coding:
+
+### Step-by-Step Guide
+
+1. **Navigate to Posts Directory**
+   ```bash
+   cd src/posts/
+   ```
+
+2. **Duplicate the Template**
+   ```bash
+   cp template.md my-new-post.md
+   ```
+
+3. **Edit Frontmatter**
+   ```markdown
+   ---
+   title: "Your Awesome Post Title"
+   date: "2024-01-15"
+   excerpt: "A brief one-sentence summary of your post"
+   author: "Your Name"
+   tags: ["react", "typescript", "tutorial"]
+   ---
+   ```
+
+4. **Write Your Content**
+   
+   Use Markdown syntax below the frontmatter:
+   ```markdown
+   ## Your First Heading
+   
+   Your content here...
+   
+   ### Subheading
+   
+   More content with **bold** and *italic* text.
+   
+   ```code blocks```
+   ```
+
+5. **Commit and Push**
+   ```bash
+   git add src/posts/my-new-post.md
+   git commit -m "Add new blog post: My New Post"
+   git push
+   ```
+
+Your post will automatically appear on the blog page! 🎉
+
+### Frontmatter Options
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `title` | ✅ Yes | Post title displayed on blog |
+| `date` | ✅ Yes | Publication date (YYYY-MM-DD) |
+| `excerpt` | ✅ Yes | Short summary for post list |
+| `author` | ❌ No | Author name (defaults to main author) |
+| `tags` | ❌ No | Array of tags for categorization |
+| `image` | ❌ No | Featured image URL |
+
+---
+
+## 🌍 Deployment
+
+This portfolio uses **automated deployment** to GitHub Pages via GitHub Actions.
+
+### Automatic Deployment
+
+Every push to the `main` branch triggers:
+1. 🖼️ Image optimization
+2. 🎨 OG image generation
+3. 🗺️ Sitemap creation
+4. 🏗️ Production build
+5. 🚀 Deployment to GitHub Pages
+
+### Custom Domain Setup
+
+#### Using `charleyraluswinga.space`
+
+1. **CNAME File** (Already configured)
+   
+   The `public/CNAME` file contains: `charleyraluswinga.space`
+
+2. **DNS Configuration**
+   
+   At your domain registrar, add:
+   
+   **Option A: CNAME Record (Recommended)**
+   ```
+   Type: CNAME
+   Host: @ (or www)
+   Value: Tshikwetamakole.github.io
+   TTL: 3600
+   ```
+   
+   **Option B: A Records (For Apex Domain)**
+   ```
+   Type: A
+   Host: @
+   Value: 185.199.108.153
+   Value: 185.199.109.153
+   Value: 185.199.110.153
+   Value: 185.199.111.153
+   TTL: 3600
+   ```
+
+3. **Enable HTTPS**
+   
+   - Go to repository **Settings** → **Pages**
+   - Ensure custom domain is set to `charleyraluswinga.space`
+   - Enable "Enforce HTTPS" ✅
+
+4. **Verify Deployment**
+   ```bash
+   # Check DNS propagation
+   dig +short charleyraluswinga.space
+   
+   # Test HTTPS
+   curl -I https://charleyraluswinga.space
+   ```
+
+#### Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| 404 Error | Verify CNAME file has no extra whitespace |
+| DNS not resolving | Wait 24-48 hours for full propagation |
+| HTTPS not working | Check GitHub Pages settings for HTTPS enforcement |
+| Custom domain not showing | Confirm DNS records point to correct GitHub IPs |
+
+---
+
+## 🎨 Customization
+
+### Color Scheme
+
+Edit `tailwind.config.js`:
+
+```javascript
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#your-color',
+        secondary: '#your-color',
+        accent: '#your-color',
+      }
+    }
+  }
+}
+```
+
+### Personal Information
+
+Update your details in:
+- `src/pages/Hero.tsx` - Name, title, social links
+- `src/pages/About.tsx` - Bio, skills, experience
+- `src/pages/Contact.tsx` - Contact information
+- `public/resume.pdf` - Replace with your resume
+
+### Formspree Contact Form
+
+Replace the endpoint in `src/pages/Contact.tsx`:
+```typescript
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+```
+
+### Analytics (Optional)
+
+Add Google Analytics in `index.html`:
+```html
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how you can help:
+
+1. **Fork the repository**
+2. **Create a feature branch**
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+3. **Commit your changes**
+   ```bash
+   git commit -m "Add amazing feature"
+   ```
+4. **Push to the branch**
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+5. **Open a Pull Request**
+
+### Development Guidelines
+
+- ✅ Follow TypeScript best practices
+- ✅ Use ESLint and Prettier
+- ✅ Write meaningful commit messages
+- ✅ Test your changes locally
+- ✅ Update documentation as needed
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+### MIT License Summary
+
+- ✅ Commercial use
+- ✅ Modification
+- ✅ Distribution
+- ✅ Private use
 
 ---
 
 ## 👨‍💻 Author
 
--   **Emmanuel Charley Raluswinga**
-    -   GitHub: [@Tshikwetamakole](https://github.com/Tshikwetamakole)
-    -   Email: victorraluswinga@gmail.com
+<div align="center">
+
+### **Emmanuel Charley Raluswinga**
+
+[![GitHub](https://img.shields.io/badge/GitHub-Tshikwetamakole-181717?logo=github)](https://github.com/Tshikwetamakole)
+[![Email](https://img.shields.io/badge/Email-victorraluswinga@gmail.com-EA4335?logo=gmail&logoColor=white)](mailto:victorraluswinga@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?logo=linkedin)](https://www.linkedin.com)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-FF6B6B?logo=googlechrome&logoColor=white)](https://charleyraluswinga.space)
+
+*Full-stack developer passionate about creating impactful web experiences*
+
+</div>
+
+---
+
+## 🌟 Acknowledgments
+
+- **Design Inspiration**: Modern portfolio trends
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Hosting**: [GitHub Pages](https://pages.github.com/)
+
+---
+
+## 📈 Project Stats
+
+![GitHub last commit](https://img.shields.io/github/last-commit/Tshikwetamakole/emmanuel-charley-portfolio)
+![GitHub issues](https://img.shields.io/github/issues/Tshikwetamakole/emmanuel-charley-portfolio)
+![GitHub stars](https://img.shields.io/github/stars/Tshikwetamakole/emmanuel-charley-portfolio)
+![GitHub forks](https://img.shields.io/github/forks/Tshikwetamakole/emmanuel-charley-portfolio)
+
+---
+
+<div align="center">
+
+### ⭐ Star this repo if you find it helpful!
+
+**Made with ❤️ by Emmanuel Charley Raluswinga**
+
+</div>
