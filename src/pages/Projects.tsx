@@ -5,6 +5,33 @@ import ProjectModal from "../components/ProjectModal";
 
 const projects = [
   {
+    title: "Limpopo Connect",
+    description: "A comprehensive web application connecting communities in Limpopo province. Features real-time communication, resource sharing, and community engagement tools to bridge the digital divide.",
+    tech: ["React", "TypeScript", "Firebase"],
+    link: "#",
+    github: "#",
+    category: "Web Development",
+    featured: true,
+  },
+  {
+    title: "Miss South Africa Disability",
+    description: "Dynamic website platform for Miss South Africa Disability pageant. Showcases contestants, provides voting mechanisms, and celebrates inclusivity and diversity in South Africa.",
+    tech: ["React", "Next.js", "Tailwind CSS"],
+    link: "#",
+    github: "#",
+    category: "Web Development",
+    featured: true,
+  },
+  {
+    title: "Far North Youth Development",
+    description: "Initiative website empowering youth in far north regions through education, skills development, and mentorship programs. Features event management, resource library, and community forums.",
+    tech: ["React", "Node.js", "MongoDB"],
+    link: "#",
+    github: "#",
+    category: "Web Development",
+    featured: true,
+  },
+  {
     title: "Hyka E-Hailing App",
     description: "A ride-sharing app built during a 2024 hackathon focused on mobility in underserved communities. Features real-time tracking, secure payments, and user-friendly interface.",
     tech: ["React Native", "Firebase", "Node.js"],
