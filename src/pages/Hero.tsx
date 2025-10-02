@@ -67,7 +67,7 @@ const Hero = () => {
       >
         <motion.img
           src={`${import.meta.env.BASE_URL}profile.jpg`}
-          srcSet={`${import.meta.env.BASE_URL}profile.jpg 1x, ${import.meta.env.BASE_URL}charley2.jpg 2x`}
+          srcSet={`${import.meta.env.BASE_URL}profile.jpg 1x, ${import.meta.env.BASE_URL}profile.jpg 2x`}
           loading="lazy"
           decoding="async"
           alt="Emmanuel 'Charley' Raluswinga — profile photo"
