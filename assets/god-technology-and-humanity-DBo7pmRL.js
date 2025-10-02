@@ -2,7 +2,6 @@ const e=`---
 title: "God, Technology, and Humanity"
 date: "2024-01-20"
 excerpt: "Exploring the intersection of faith, innovation, and human connection in our digital age."
-externalUrl: "https://www.charleyraluswinga.space/2023/06/god-technology-and-humanity-ethical.html"
 ---
 
 # God, Technology, and Humanity
