@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "homepage": "https://charleyraluswinga.space",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"npm:dev:frontend\" \"npm:dev:backend\"",
+    "dev:frontend": "vite",
+    "dev:backend": "npm run dev --prefix server",
     "optimize-images": "node scripts/optimize-images.js",
     "generate-og": "node scripts/generate-og.js",
     "generate-sitemap": "node scripts/generate-sitemap.js",
@@ -37,6 +39,7 @@
     "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.21",
     "buffer": "^6.0.3",
+    "concurrently": "^9.2.1",
     "gh-pages": "^6.3.0",
     "jsdom": "^27.0.0",
     "postcss": "^8.5.6",

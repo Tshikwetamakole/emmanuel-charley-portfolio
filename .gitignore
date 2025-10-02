@@ -1,5 +1,10 @@
 node_modules
 dist
+notes.txt
+.DS_Store
+
+# Log files
+*.log
 echo ".env" >> .gitignore
 notesnode_modules/
 public/og/

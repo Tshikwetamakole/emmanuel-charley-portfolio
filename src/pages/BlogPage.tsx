@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import matter from "gray-matter";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
@@ -16,27 +15,25 @@ const BlogPage = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const modules = import.meta.glob('../posts/*.md', { query: '?raw', import: 'default' });
+      try {
+        const response = await fetch('/api/posts');
+        if (!response.ok) {
+          throw new Error('Failed to fetch posts');
+        }
+        const data: BlogPostMeta[] = await response.json();
 
-      const postListPromises = Object.entries(modules)
-        .filter(([path]) => !path.endsWith('template.md'))
-        .map(async ([path, resolver]) => {
-          const rawContent = await resolver() as string;
-          const { data } = matter(rawContent);
-          const slug = path.split('/').pop()!.replace('.md', '');
+        const formattedPosts = data.map(post => ({
+            ...post,
+            date: new Date(post.date).toISOString().split('T')[0]
+        }));
 
-          return {
-            title: data.title || 'Untitled Post',
-            date: data.date ? new Date(data.date).toISOString().split('T')[0] : 'No date',
-            slug,
-            excerpt: data.excerpt || 'No excerpt available.',
-          };
-        });
+        // The API already returns posts sorted by date, but sorting again client-side is safe.
+        formattedPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-      const postList = await Promise.all(postListPromises);
-
-      postList.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-      setPosts(postList);
+        setPosts(formattedPosts);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
     };
 
     fetchPosts();

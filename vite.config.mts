@@ -15,6 +15,14 @@ export default defineConfig({
       '**/.{idea,git,cache,output,temp}/**',
     ],
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+    },
+  },
   build: {
     chunkSizeWarningLimit: 1000, // optional: suppress chunk warnings
   },
