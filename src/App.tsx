@@ -18,6 +18,7 @@ const Projects = lazy(() => import("./pages/Projects"));
 const GitHub = lazy(() => import("./pages/GitHub"));
 const BlogPreview = lazy(() => import("./components/BlogPreview"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
+const Freebies = lazy(() => import("./pages/Freebies"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Post = lazy(() => import("./pages/Post"));
 
@@ -46,6 +47,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/blog" element={<BlogPage />} />
+              <Route path="/freebies" element={<Freebies />} />
               <Route path="/posts/:slug" element={<Post />} />
             </Routes>
           </Suspense>
