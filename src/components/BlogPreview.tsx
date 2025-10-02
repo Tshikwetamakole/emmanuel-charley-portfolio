@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import matter from "gray-matter";
-
-// No need to extend ImportMeta; Vite provides import.meta.glob globally.
+import { Link } from "react-router-dom";
 
 interface BlogPostMeta {
   title: string;
@@ -10,14 +9,16 @@ interface BlogPostMeta {
   slug: string;
 }
 
-const Blog = () => {
+const BlogPreview = () => {
   const [posts, setPosts] = useState<BlogPostMeta[]>([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
       const modules = import.meta.glob('../posts/*.md', { query: '?raw', import: 'default' });
 
-      const postListPromises = Object.entries(modules).map(async ([path, resolver]) => {
+      const postListPromises = Object.entries(modules)
+        .filter(([path]) => !path.endsWith('template.md'))
+        .map(async ([path, resolver]) => {
         const rawContent = await resolver() as string;
         const { data } = matter(rawContent);
         const slug = path.split('/').pop()!.replace('.md', '');
@@ -31,20 +32,17 @@ const Blog = () => {
 
       const postList = await Promise.all(postListPromises);
 
-      // Sort posts by date, most recent first
+      // Sort posts by date, most recent first, and take the top 3
       postList.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-      setPosts(postList);
+      setPosts(postList.slice(0, 3));
     };
 
     fetchPosts();
   }, []);
 
-
-
   return (
     <section
-      id="blog"
+      id="blog-preview"
       className="px-6 py-20 text-center bg-background text-foreground"
     >
       <motion.h2 
@@ -56,7 +54,7 @@ const Blog = () => {
       >
         From the Blog
       </motion.h2>
-      <div className="grid max-w-4xl gap-8 mx-auto md:grid-cols-2">
+      <div className="grid max-w-4xl gap-8 mx-auto md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post, idx) => (
           <motion.div 
             key={idx} 
@@ -77,8 +75,13 @@ const Blog = () => {
           </motion.div>
         ))}
       </div>
+      <div className="mt-12">
+        <Link to="/blog" className="px-6 py-3 font-semibold transition-colors duration-300 rounded-lg bg-accent text-background hover:bg-secondaryAccent">
+          View All Posts
+        </Link>
+      </div>
     </section>
   );
 };
 
-export default Blog;
+export default BlogPreview;

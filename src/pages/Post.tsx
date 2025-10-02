@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import matter from "gray-matter";
+import { motion } from "framer-motion";
+import { ArrowLeft } from "lucide-react";
 
 const Post = () => {
   const { slug } = useParams();
@@ -31,7 +33,7 @@ const Post = () => {
       setContentExcerpt((data.excerpt && typeof data.excerpt === 'string') ? data.excerpt : content.slice(0, 160));
       setMeta({
         title: typeof data.title === "string" ? data.title : "Untitled",
-        date: typeof data.date === "string" ? data.date : "",
+        date: typeof data.date === "string" ? new Date(data.date).toISOString().split('T')[0] : "",
         excerpt: typeof data.excerpt === 'string' ? data.excerpt : undefined,
       });
     };
@@ -40,9 +42,14 @@ const Post = () => {
   }, [slug]);
 
   return (
-    <section className="max-w-3xl px-4 py-20 mx-auto prose dark:prose-invert text-foreground">
+    <section className="max-w-3xl min-h-screen px-4 py-24 mx-auto text-foreground">
       {meta ? (
-        <>
+        <motion.article
+          className="w-full prose dark:prose-invert"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           <Helmet>
             <title>{meta.title} | Charley Raluswinga</title>
             <meta name="description" content={contentExcerpt} />
@@ -68,12 +75,25 @@ const Post = () => {
             <meta name="twitter:description" content={contentExcerpt} />
             <meta name="twitter:image" content={`https://charleyraluswinga.space/og/${slug}.png`} />
           </Helmet>
-          <h1>{meta.title}</h1>
-          <p className="mb-6 text-sm text-secondaryAccent">{meta.date}</p>
+
+          <div className="mb-8">
+            <Link
+              to="/blog"
+              className="flex items-center gap-2 transition-colors duration-300 text-accent hover:text-secondaryAccent"
+            >
+              <ArrowLeft size={18} />
+              Back to Blog
+            </Link>
+          </div>
+
+          <h1 className="text-4xl font-bold text-accent">{meta.title}</h1>
+          <p className="mb-8 text-sm text-secondaryAccent">{meta.date}</p>
           <ReactMarkdown>{content}</ReactMarkdown>
-        </>
+        </motion.article>
       ) : (
-        <p className="text-xl text-center">Loading...</p>
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <p className="text-xl text-center">{content || "Loading..."}</p>
+        </div>
       )}
     </section>
   );

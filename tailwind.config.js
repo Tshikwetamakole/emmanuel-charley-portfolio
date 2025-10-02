@@ -14,6 +14,46 @@ module.exports = {
         background: "#0f172a",        // Dark slate background
         foreground: "#f8fafc",        // Light text for dark mode
       },
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            '--tw-prose-body': theme('colors.foreground[800]'),
+            '--tw-prose-headings': theme('colors.accent'),
+            '--tw-prose-lead': theme('colors.foreground[700]'),
+            '--tw-prose-links': theme('colors.secondaryAccent'),
+            '--tw-prose-bold': theme('colors.foreground'),
+            '--tw-prose-counters': theme('colors.foreground[600]'),
+            '--tw-prose-bullets': theme('colors.borderLine'),
+            '--tw-prose-hr': theme('colors.borderLine'),
+            '--tw-prose-quotes': theme('colors.accent'),
+            '--tw-prose-quote-borders': theme('colors.borderLine'),
+            '--tw-prose-captions': theme('colors.foreground[700]'),
+            '--tw-prose-code': theme('colors.secondaryAccent'),
+            '--tw-prose-pre-code': theme('colors.secondaryAccent'),
+            '--tw-prose-pre-bg': theme('colors.gray[800]'),
+            '--tw-prose-th-borders': theme('colors.borderLine'),
+            '--tw-prose-td-borders': theme('colors.borderLine'),
+
+            // Invert styles for dark mode
+            '--tw-prose-invert-body': theme('colors.foreground'),
+            '--tw-prose-invert-headings': theme('colors.accent'),
+            '--tw-prose-invert-lead': theme('colors.foreground'),
+            '--tw-prose-invert-links': theme('colors.secondaryAccent'),
+            '--tw-prose-invert-bold': theme('colors.foreground'),
+            '--tw-prose-invert-counters': theme('colors.foreground'),
+            '--tw-prose-invert-bullets': theme('colors.borderLine'),
+            '--tw-prose-invert-hr': theme('colors.borderLine'),
+            '--tw-prose-invert-quotes': theme('colors.accent'),
+            '--tw-prose-invert-quote-borders': theme('colors.borderLine'),
+            '--tw-prose-invert-captions': theme('colors.foreground'),
+            '--tw-prose-invert-code': theme('colors.secondaryAccent'),
+            '--tw-prose-invert-pre-code': theme('colors.secondaryAccent'),
+            '--tw-prose-invert-pre-bg': 'rgba(30, 41, 59, 0.8)', // slate-800 with opacity
+            '--tw-prose-invert-th-borders': theme('colors.borderLine'),
+            '--tw-prose-invert-td-borders': theme('colors.borderLine'),
+          },
+        },
+      }),
     },
   },
   plugins: [
