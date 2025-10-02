@@ -113,11 +113,29 @@ This project is a **personal developer portfolio** website for Emmanuel "Charley
 ### 🌍 Live Site
 > **URL:** [https://tshikwetamakole.github.io/emmanuel-charley-portfolio](https://tshikwetamakole.github.io/emmanuel-charley-portfolio)
 
-### 📝 Blog Setup
-- Blog posts stored in `src/posts/*.md`
-- Posts are loaded using `import.meta.glob` via `vite.config.ts`
-- Dynamic routing via `/posts/:slug` handled in `Post.tsx`
-- Markdown frontmatter (title, date, excerpt) is parsed with `gray-matter`
+### 📝 How to Add a New Blog Post
+
+Adding a new blog post is simple and doesn't require any coding. Just follow these steps:
+
+1.  **Go to the Posts Folder:**
+    -   Navigate to the `src/posts/` directory in this repository.
+
+2.  **Use the Template:**
+    -   You will find a file named `template.md`. This is your starting point for any new post.
+    -   Duplicate this file.
+
+3.  **Rename Your New File:**
+    -   Rename your duplicated file to match your post's title. Use lowercase letters and hyphens instead of spaces.
+    -   For example, a post titled "My First Article" should be named `my-first-article.md`.
+
+4.  **Edit the Content:**
+    -   Open your new file and you'll see a section at the top between `---` lines. This is the "frontmatter."
+    -   **`title`**: Change this to your post's title.
+    -   **`date`**: Set the publication date in `YYYY-MM-DD` format.
+    -   **`excerpt`**: Write a short, one-sentence summary. This appears in the blog list.
+    -   Below the frontmatter, replace the instructional text with your own article content using Markdown.
+
+That's it! Once you commit and push the new file, it will automatically appear on your blog.
 
 ### 📬 Contact Form
 - **Formspree endpoint:** `https://formspree.io/f/xnnvezby`

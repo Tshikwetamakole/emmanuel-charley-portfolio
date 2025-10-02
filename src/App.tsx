@@ -16,26 +16,23 @@ const Services = lazy(() => import("./pages/Services"));
 const Skills = lazy(() => import("./pages/Skills"));
 const Projects = lazy(() => import("./pages/Projects"));
 const GitHub = lazy(() => import("./pages/GitHub"));
-const Blog = lazy(() => import("./pages/Blog"));
+const BlogPreview = lazy(() => import("./components/BlogPreview"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Post = lazy(() => import("./pages/Post"));
 
 const HomePage = () => (
   <>
-    <Navbar />
-    <main>
-      <Suspense fallback={<Preloader />}>
-        <section id="home"><Hero /></section>
-        <section id="about"><About /></section>
-        <section id="services"><Services /></section>
-        <section id="skills"><Skills /></section>
-        <section id="projects"><Projects /></section>
-        <section id="github"><GitHub /></section>
-        <section id="blog"><Blog /></section>
-        <section id="contact"><Contact /></section>
-      </Suspense>
-      <FloatingWhatsApp />
-    </main>
+    <Suspense fallback={<Preloader />}>
+      <section id="home"><Hero /></section>
+      <section id="about"><About /></section>
+      <section id="services"><Services /></section>
+      <section id="skills"><Skills /></section>
+      <section id="projects"><Projects /></section>
+      <section id="github"><GitHub /></section>
+      <BlogPreview />
+      <section id="contact"><Contact /></section>
+    </Suspense>
   </>
 );
 
@@ -43,12 +40,17 @@ const App = () => {
   return (
     <div className="text-white bg-gray-900 scroll-smooth">
       <Router>
-        <Suspense fallback={<Preloader />}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/posts/:slug" element={<Post />} />
-          </Routes>
-        </Suspense>
+        <Navbar />
+        <main>
+          <Suspense fallback={<Preloader />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/posts/:slug" element={<Post />} />
+            </Routes>
+          </Suspense>
+        </main>
+        <FloatingWhatsApp />
       </Router>
 
       <ThemeToggle />
