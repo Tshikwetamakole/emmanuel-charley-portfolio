@@ -8,6 +8,7 @@ interface BlogPostMeta {
   title: string;
   date: string;
   slug: string;
+  externalUrl?: string;
 }
 
 const Blog = () => {
@@ -26,6 +27,7 @@ const Blog = () => {
           title: data.title || 'Untitled Post',
           date: data.date ? new Date(data.date).toISOString().split('T')[0] : 'No date',
           slug,
+          externalUrl: data.externalUrl || undefined,
         };
       });
 
@@ -69,10 +71,17 @@ const Blog = () => {
             <p className="text-sm text-secondaryAccent">{post.date}</p>
             <h3 className="mb-2 text-xl font-semibold">{post.title}</h3>
             <a
-              href={`/posts/${post.slug}`}
-              className="text-sm transition-colors duration-200 text-accent hover:text-secondaryAccent"
+              href={post.externalUrl || `/posts/${post.slug}`}
+              target={post.externalUrl ? "_blank" : undefined}
+              rel={post.externalUrl ? "noopener noreferrer" : undefined}
+              className="text-sm transition-colors duration-200 text-accent hover:text-secondaryAccent inline-flex items-center gap-1"
             >
               Read Full →
+              {post.externalUrl && (
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              )}
             </a>
           </motion.div>
         ))}
