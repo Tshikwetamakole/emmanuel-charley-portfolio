@@ -27,10 +27,10 @@ function escapeXml(unsafe) {
   return unsafe.replace(/[<>&'\"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;',"'":"&apos;","\"":"&quot;"}[c]));
 }
 
-fs.readdir(postsDir, (err, files) => {
+fs.readdir(postsDir, async (err, files) => {
   if (err) { console.error(err); return; }
   const md = files.filter(f => f.endsWith('.md'));
-  md.forEach(async (file) => {
+  await Promise.all(md.map(async (file) => {
     const slug = file.replace('.md', '');
     const raw = fs.readFileSync(path.join(postsDir, file), 'utf8');
     const titleMatch = raw.match(/title:\s*"(.+)"/i) || raw.match(/title:\s*(.+)/i);
@@ -46,5 +46,5 @@ fs.readdir(postsDir, (err, files) => {
       await sharp(svg).resize(1200, 630).png().toFile(path.join(outDir, `${slug}.png`));
       console.log('OG generated for', slug);
     } catch (e) { console.error('OG failed', slug, e.message); }
-  });
+  }));
 });
