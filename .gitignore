@@ -5,3 +5,7 @@ notes.txt
 
 # Log files
 *.log
+echo ".env" >> .gitignore
+notesnode_modules/
+public/og/
+public/sitemap.xml
