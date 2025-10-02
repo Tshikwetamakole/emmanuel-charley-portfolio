@@ -109,10 +109,13 @@ const GitHubActivityFeed: React.FC = () => {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      month: 'short', 
+    if (isNaN(date.getTime())) {
+      return 'N/A';
+    }
+    return date.toLocaleDateString('en-US', {
+      month: 'short',
       day: 'numeric',
-      year: date.getFullYear() !== new Date().getFullYear() ? 'numeric' : undefined
+      year: date.getFullYear() !== new Date().getFullYear() ? 'numeric' : undefined,
     });
   };
 
