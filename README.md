@@ -1,5 +1,5 @@
 <div align="center">
-
+  
 # 🌟 Emmanuel Charley Portfolio
 
 ### A Modern Developer Portfolio Built with React, TypeScript & Tailwind CSS
