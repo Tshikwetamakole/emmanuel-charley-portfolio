@@ -77,7 +77,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          Emmanuel 'Charley' Raluswinga
+          Emmanuel Charley Raluswinga
           <br />
           <span className="block mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-transparent bg-gradient-to-r from-accent via-secondaryAccent to-accent bg-clip-text bg-300% animate-gradient">
             <Typewriter
